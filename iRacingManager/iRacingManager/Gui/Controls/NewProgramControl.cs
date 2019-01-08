@@ -28,12 +28,23 @@ namespace iRacingManager.Gui.Controls
 
         #region Methods
 
+        protected virtual void OnProgramAdded(Model.Program program)
+        {
+            if (ProgramAdded != null)
+            {
+                ProgramAdded(this, new Model.ProgramAddedEventArgs(program));
+            }
+        }
+
         private void openAddProgramDialog()
         {
             using (ProgramDialog dialog = new ProgramDialog())
             {
                 dialog.StartPosition = FormStartPosition.CenterParent;
-                dialog.ShowDialog(this);
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    this.OnProgramAdded(dialog.Program);
+                }
             }
         }
 
@@ -45,6 +56,12 @@ namespace iRacingManager.Gui.Controls
         {
             this.openAddProgramDialog();
         }
+
+        #endregion
+
+        #region Event
+
+        internal event EventHandler<Model.ProgramAddedEventArgs> ProgramAdded;
 
         #endregion
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace iRacingManager.Model
 {
@@ -11,6 +13,13 @@ namespace iRacingManager.Model
     {
 
         #region Members
+
+        internal enum ProcessState
+        {
+            STOPPED,
+            INACTION,
+            RUNNING
+        }
 
         #endregion
 
@@ -48,6 +57,21 @@ namespace iRacingManager.Model
             }
         }
 
+        internal Image getClonedImage()
+        {
+            using (Image sourceImage = this.Icon)
+            {
+                if (sourceImage == null) return null;
+                Image clonedImg = new Bitmap(sourceImage.Width, sourceImage.Height, PixelFormat.Format32bppArgb);
+                using (var copy = Graphics.FromImage(clonedImg))
+                {
+                    copy.DrawImage(sourceImage, 0, 0);
+                }
+
+                return clonedImg;
+            }
+        }
+
         #endregion
 
         #region Properties
@@ -66,22 +90,21 @@ namespace iRacingManager.Model
         }
 
         [System.Xml.Serialization.XmlIgnore]
-        public System.Drawing.Image Icon
+        public Image Icon
         {
             get
             {
                 if (!this.UseIconFromApplication)
                 {
-                    using(System.Drawing.Image img = System.Drawing.Image.FromFile(this.PicturePath))
-                    {
-                        return (System.Drawing.Image)img.Clone();
-                    }
+                    return Image.FromFile(this.PicturePath);
                 } else
                 {
-                    using (System.Drawing.Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(System.IO.Path.Combine(this.InstallLocation, this.FileName)))
+                    if (string.IsNullOrEmpty(this.InstallLocation) || string.IsNullOrEmpty(this.FileName))
                     {
-                        return ((System.Drawing.Icon)icon.Clone()).ToBitmap();
+                        return null;
                     }
+
+                    return System.Drawing.Icon.ExtractAssociatedIcon(System.IO.Path.Combine(this.InstallLocation, this.FileName)).ToBitmap();
                 }
             }
         }

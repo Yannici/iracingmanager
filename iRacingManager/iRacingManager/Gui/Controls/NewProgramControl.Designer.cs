@@ -37,7 +37,7 @@
             this.materialRaisedButtonAdd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButtonAdd.Depth = 0;
             this.materialRaisedButtonAdd.Icon = global::iRacingManager.Properties.Resources.add_icon;
-            this.materialRaisedButtonAdd.Location = new System.Drawing.Point(91, 50);
+            this.materialRaisedButtonAdd.Location = new System.Drawing.Point(91, 39);
             this.materialRaisedButtonAdd.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonAdd.Name = "materialRaisedButtonAdd";
             this.materialRaisedButtonAdd.Primary = true;
@@ -53,7 +53,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.materialRaisedButtonAdd);
             this.Name = "NewProgramControl";
-            this.Size = new System.Drawing.Size(333, 133);
+            this.Size = new System.Drawing.Size(333, 117);
             this.ResumeLayout(false);
             this.PerformLayout();
 

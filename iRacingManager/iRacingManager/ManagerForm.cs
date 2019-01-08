@@ -21,7 +21,6 @@ namespace iRacingManager
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
-        private List<(string DisplayName, string Path)> _InstalledPrograms = new List<(string DisplayName, string Path)>();
         private Model.Settings.Settings _Settings = null;
         private List<Model.Program> _Programs = new List<Model.Program>();
         private System.Drawing.Text.PrivateFontCollection _FontCollection = new System.Drawing.Text.PrivateFontCollection();
@@ -41,8 +40,6 @@ namespace iRacingManager
                 MaterialSkin.Primary.Red800, MaterialSkin.Primary.Blue800,
                 MaterialSkin.Primary.Indigo400, MaterialSkin.Accent.Indigo400,
                 MaterialSkin.TextShade.WHITE);
-
-            this.initializeInstalledPrograms();
         }
 
         #endregion
@@ -83,23 +80,6 @@ namespace iRacingManager
             System.Runtime.InteropServices.Marshal.FreeCoTaskMem(data);
         }
 
-        private void initializeInstalledPrograms()
-        {
-            string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
-            {
-                foreach (string subkey_name in key.GetSubKeyNames())
-                {
-                    using (RegistryKey subkey = key.OpenSubKey(subkey_name))
-                    {
-                        this._InstalledPrograms.Add((subkey.GetValue("DisplayName")?.ToString(), subkey.GetValue("InstallLocation")?.ToString()));
-                    }
-                }
-            }
-
-            this._InstalledPrograms = this._InstalledPrograms.Distinct().ToList();
-        }
-
         private void initializePrograms()
         {
             // Custom Programs
@@ -122,15 +102,55 @@ namespace iRacingManager
             ProgramControl control = new ProgramControl(program, this._FontCollection);
             program.Control = control;
             this.flowLayoutPanelPrograms.Controls.Add(control);
+            this.flowLayoutPanelPrograms.Controls.SetChildIndex(control, this.flowLayoutPanelPrograms.Controls.Count - 2);
         }
 
         private void addAddControl()
         {
-            this.flowLayoutPanelPrograms.Controls.Add(new NewProgramControl());
+            NewProgramControl newProgramControl = new NewProgramControl();
+            newProgramControl.ProgramAdded += NewProgramControl_ProgramAdded;
+            this.flowLayoutPanelPrograms.Controls.Add(newProgramControl);
+        }
+
+        private void startAll()
+        {
+            foreach (Control control in this.flowLayoutPanelPrograms.Controls)
+            {
+                if (control.GetType() == typeof(NewProgramControl)) continue;
+
+                if(((ProgramControl)control).State != Model.Program.ProcessState.RUNNING)
+                {
+                    ((ProgramControl)control).start();
+                }
+            }
+        }
+
+        private void stopAll()
+        {
+            foreach (Control control in this.flowLayoutPanelPrograms.Controls)
+            {
+                if (control.GetType() == typeof(NewProgramControl)) continue;
+
+                if (((ProgramControl)control).State != Model.Program.ProcessState.STOPPED)
+                {
+                    ((ProgramControl)control).stop();
+                }
+            }
+        }
+
+        private void checkStartStopButtons()
+        {
+            this.materialFlatButtonStartAll.Visible = this.flowLayoutPanelPrograms.Controls.Cast<Control>().Any((c) =>
+                {
+                    return c.GetType() == typeof(ProgramControl) && ((ProgramControl)c).State == Model.Program.ProcessState.STOPPED;
+                });
+            this.materialFlatButtonStopAll.Visible = this.flowLayoutPanelPrograms.Controls.Cast<Control>().Any((c) =>
+            {
+                return c.GetType() == typeof(ProgramControl) && ((ProgramControl)c).State == Model.Program.ProcessState.RUNNING;
+            });
         }
 
         #endregion
-
 
         #region Eventhandler
 
@@ -144,6 +164,8 @@ namespace iRacingManager
                 this.initializeProgramControls();
                 this.addAddControl();
                 this._Settings.Save();
+
+                this.timerCheckProcesses.Start();
             } catch(Exception ex)
             {
                 MessageBox.Show(this, $"Error on loading iRacing Manager: {ex.Message}", "Error on loading.",
@@ -151,14 +173,32 @@ namespace iRacingManager
             }
         }
 
+        private void NewProgramControl_ProgramAdded(object sender, Model.ProgramAddedEventArgs e)
+        {
+            this._Programs.Add(e.AddedProgram);
+            this.createProgramControl(e.AddedProgram);
+        }
+
         private void ManagerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            this._Settings.Programs = this._Programs;
             this._Settings.Save();
         }
 
         private void timerCheckProcesses_Tick(object sender, EventArgs e)
         {
             this.checkProgramControls();
+            this.checkStartStopButtons();
+        }
+
+        private void materialFlatButtonStartAll_Click(object sender, EventArgs e)
+        {
+            this.startAll();
+        }
+
+        private void materialFlatButtonStopAll_Click(object sender, EventArgs e)
+        {
+            this.stopAll();
         }
 
         #endregion

@@ -74,6 +74,7 @@
       <DependentUpon>ManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Program.cs" />
+    <Compile Include="Model\ProgramAddedEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -129,6 +130,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shape-Cube-128 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Streamline-75_185095 %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Cancel_1063907.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_start_60207.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_play_1894657.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_pause-circle-outline_326570.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_play-circle_383091.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

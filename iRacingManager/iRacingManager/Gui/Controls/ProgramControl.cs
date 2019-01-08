@@ -26,6 +26,7 @@ namespace iRacingManager.Gui.Controls
         private Model.Program _Program = null;
         private Process _Process = null;
         private bool _StartStopAction = false;
+        private Model.Program.ProcessState _CurrentState = Model.Program.ProcessState.STOPPED;
 
         #endregion
 
@@ -49,6 +50,11 @@ namespace iRacingManager.Gui.Controls
         {
             try
             {
+                this.buttonStart.BackColor = Color.DarkRed;
+                this.buttonStart.Text = "STOPPING ...";
+                this.buttonStart.Enabled = false;
+
+                this.buttonStart.Enabled = false;
                 this._StartStopAction = true;
                 if (await Task.Run(() => this.stopAsync()))
                 {
@@ -59,6 +65,7 @@ namespace iRacingManager.Gui.Controls
                 throw ex;
             } finally
             {
+                this.buttonStart.Enabled = true;
                 this._StartStopAction = false;
             }
         }
@@ -67,7 +74,12 @@ namespace iRacingManager.Gui.Controls
         {
             try
             {
+                this.buttonStart.BackColor = Color.LightBlue;
+                this.buttonStart.Text = "STARTING ...";
+                this.buttonStart.Enabled = false;
+
                 this._StartStopAction = true;
+                this.buttonStart.Enabled = false;
                 if (await Task.Run(() => this.startAsync()))
                 {
                     this.setRunning();
@@ -78,6 +90,7 @@ namespace iRacingManager.Gui.Controls
             } finally
             {
                 this._StartStopAction = false;
+                this.buttonStart.Enabled = true;
             }
         }
 
@@ -87,15 +100,32 @@ namespace iRacingManager.Gui.Controls
             this.buttonStart.Text = "START";
             this.buttonStart.BackColor = Color.White;
             this.buttonStart.Enabled = true;
+            this.materialFlatButtonModify.Enabled = true;
+            this._CurrentState = Model.Program.ProcessState.STOPPED;
         }
 
         internal void updateState()
         {
             try
             {
-                if (this._Process == null || this._Process.HasExited)
+                if (this.State == Model.Program.ProcessState.STOPPED)
                 {
-                    this.setStopped();
+                    this.checkProgramRunning();
+                }
+
+                if (this.State != this._CurrentState)
+                {
+                    switch(this.State)
+                    {
+                        case Model.Program.ProcessState.STOPPED:
+                            this.Invoke(new Action(() => this.setStopped()));
+                            break;
+                        case Model.Program.ProcessState.RUNNING:
+                            this.Invoke(new Action(() => this.setRunning()));
+                            break;
+                        default:
+                            break;
+                    }
                 }
             } catch(Exception ex)
             {
@@ -107,7 +137,7 @@ namespace iRacingManager.Gui.Controls
         {
             try
             {
-                if (this._Process == null || this._Process.HasExited)
+                if (this.State != Model.Program.ProcessState.RUNNING)
                 {
                     this.setStopped();
                 }
@@ -183,6 +213,8 @@ namespace iRacingManager.Gui.Controls
             this.buttonStart.Text = "RUNNING";
             this.buttonStart.BackColor = Color.LightGreen;
             this.buttonStart.Enabled = true;
+            this.materialFlatButtonModify.Enabled = false;
+            this._CurrentState = Model.Program.ProcessState.RUNNING;
         }
 
         private void checkProgramRunning()
@@ -191,8 +223,23 @@ namespace iRacingManager.Gui.Controls
             if (processes.Any())
             {
                 this._Process = processes.First();
-                this.setRunning();
+
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action(() => this.setRunning()));
+                } else
+                {
+                    this.setRunning();
+                }
             }
+        }
+
+        private void updateProgram()
+        {
+            this.pictureBoxPicture.Image = this._Program.getClonedImage();
+            this.materialSLTPath.Text = (string.IsNullOrEmpty(this._Program.InstallLocation)) ?
+                this._Program.DisplayName + " not found" :
+                System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName);
         }
 
         #endregion
@@ -201,15 +248,12 @@ namespace iRacingManager.Gui.Controls
 
         private void ProgramControl_Load(object sender, EventArgs e)
         {
-            this.pictureBoxPicture.Image = this._Program.Icon;
-            this.pictureBoxPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.pictureBoxPicture.InitialImage = null;
+            this.pictureBoxPicture.SizeMode = PictureBoxSizeMode.Zoom;
 
-            this.materialLabelName.Text = this._Program.DisplayName;
-            this.materialSLTPath.Text = (string.IsNullOrEmpty(this._Program.InstallLocation)) ?
-                this._Program.DisplayName + " not found" :
-                System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName);
-
+            this.updateProgram();
             this.buttonStart.Cursor = Cursors.Hand;
+            this.setStopped();
             this.checkProgramRunning();
         }
 
@@ -237,25 +281,18 @@ namespace iRacingManager.Gui.Controls
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            if (this._Process == null || this._Process.HasExited)
+            if (this.State != Model.Program.ProcessState.RUNNING)
             {
-                this.buttonStart.BackColor = Color.LightBlue;
-                this.buttonStart.Text = "STARTING ...";
-                this.buttonStart.Enabled = false;
                 this.start();
             } else
             {
-                this.buttonStart.BackColor = Color.DarkRed;
-                this.buttonStart.Text = "STOPPING ...";
-                this.buttonStart.Enabled = false;
-                this.buttonStart.Update();
                 this.stop();
             }
         }
 
         private void buttonStart_MouseEnter(object sender, EventArgs e)
         {
-            if (this._Process != null && !this._Process.HasExited)
+            if (this.State == Model.Program.ProcessState.RUNNING)
             {
                 this.buttonStart.Text = "STOP";
                 this.buttonStart.BackColor = Color.IndianRed;
@@ -264,13 +301,47 @@ namespace iRacingManager.Gui.Controls
 
         private void buttonStart_MouseLeave(object sender, EventArgs e)
         {
-            if (this._Process != null && !this._Process.HasExited && !this._StartStopAction)
+            if (this.State == Model.Program.ProcessState.RUNNING)
             {
                 this.buttonStart.Text = "RUNNING";
                 this.buttonStart.BackColor = Color.LightGreen;
             }
         }
 
+        private void materialFlatButtonModify_Click(object sender, EventArgs e)
+        {
+            using (ProgramDialog dialog = new ProgramDialog(this._Program))
+            {
+                dialog.StartPosition = FormStartPosition.CenterParent;
+                dialog.ShowDialog(this);
+            }
+
+            this.updateProgram();
+        }
+
         #endregion
+
+        #region Properties
+
+        internal Model.Program.ProcessState State
+        {
+            get
+            {
+                if (this._Process != null && !this._Process.HasExited)
+                {
+                    return Model.Program.ProcessState.RUNNING;
+                }
+                 
+                if (this._StartStopAction)
+                {
+                    return Model.Program.ProcessState.INACTION;
+                }
+
+                return Model.Program.ProcessState.STOPPED;
+            }
+        }
+
+        #endregion
+
     }
 }
