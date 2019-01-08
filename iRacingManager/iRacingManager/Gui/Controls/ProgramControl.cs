@@ -59,6 +59,9 @@ namespace iRacingManager.Gui.Controls
                 if (await Task.Run(() => this.stopAsync()))
                 {
                     this.setStopped();
+                } else 
+                {
+                    this.setRunning();
                 }
             } catch(Exception ex)
             {
@@ -83,6 +86,9 @@ namespace iRacingManager.Gui.Controls
                 if (await Task.Run(() => this.startAsync()))
                 {
                     this.setRunning();
+                } else
+                {
+                    this.setStopped();
                 }
             } catch(Exception ex)
             {
@@ -167,7 +173,20 @@ namespace iRacingManager.Gui.Controls
             }
 
             Process process = Process.Start(psi);
-            process.WaitForInputIdle(10000); // 10 seconds wait for starting
+
+            if (process == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                process.WaitForInputIdle(10000); // 10 seconds wait for starting
+            } catch (InvalidOperationException)
+            {
+                // Terminal application do not have an input to wait
+            }
+            
 
             if (process.HasExited || !process.Responding)
             {
@@ -257,6 +276,15 @@ namespace iRacingManager.Gui.Controls
             this.checkProgramRunning();
         }
 
+        internal void kill()
+        {
+            if (this.State == Model.Program.ProcessState.RUNNING)
+            {
+                this._Process.Kill();
+                this.setStopped();
+            }
+        }
+
         private void materialFlatButtonSearch_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -313,11 +341,24 @@ namespace iRacingManager.Gui.Controls
             using (ProgramDialog dialog = new ProgramDialog(this._Program))
             {
                 dialog.StartPosition = FormStartPosition.CenterParent;
-                dialog.ShowDialog(this);
+                switch(dialog.ShowDialog(this))
+                {
+                    case DialogResult.Abort:
+                        ((ManagerForm)this.ParentForm).removeProgram(this._Program);
+                        break;
+                    default:
+                        ((ManagerForm)this.ParentForm).saveSettings();
+                        break;
+                }
             }
 
             this.updateProgram();
         }
+
+        //private void ProgramControl_Paint(object sender, PaintEventArgs e)
+        //{
+        //    ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, Color.LightGray, ButtonBorderStyle.Solid);
+        //}
 
         #endregion
 
@@ -341,7 +382,15 @@ namespace iRacingManager.Gui.Controls
             }
         }
 
-        #endregion
+        internal Model.Program Program
+        {
+            get
+            {
+                return this._Program;
+            }
+        }
 
+        #endregion
+        
     }
 }

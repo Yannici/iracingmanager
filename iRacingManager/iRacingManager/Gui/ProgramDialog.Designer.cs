@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramDialog));
             this.materialLabelIcon = new MaterialSkin.Controls.MaterialLabel();
             this.materialSingleLineTextFieldIconPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabelName = new MaterialSkin.Controls.MaterialLabel();
@@ -37,10 +38,11 @@
             this.materialSingleLineTextFieldPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialFlatButtonSelectApp = new MaterialSkin.Controls.MaterialFlatButton();
             this.panelDetails = new System.Windows.Forms.Panel();
+            this.materialFlatButtonDelete = new MaterialSkin.Controls.MaterialFlatButton();
+            this.materialFlatButtonUseIconFromApp = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialRaisedButtonOK = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialFlatButtonCancel = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialCheckBoxStartHidden = new MaterialSkin.Controls.MaterialCheckBox();
-            this.materialFlatButtonUseIconFromApp = new MaterialSkin.Controls.MaterialFlatButton();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelDetails.SuspendLayout();
@@ -168,6 +170,7 @@
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.White;
+            this.panelDetails.Controls.Add(this.materialFlatButtonDelete);
             this.panelDetails.Controls.Add(this.materialFlatButtonUseIconFromApp);
             this.panelDetails.Controls.Add(this.materialRaisedButtonOK);
             this.panelDetails.Controls.Add(this.materialFlatButtonCancel);
@@ -183,6 +186,40 @@
             this.panelDetails.Size = new System.Drawing.Size(289, 184);
             this.panelDetails.TabIndex = 8;
             this.panelDetails.Visible = false;
+            // 
+            // materialFlatButtonDelete
+            // 
+            this.materialFlatButtonDelete.AutoSize = true;
+            this.materialFlatButtonDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButtonDelete.Depth = 0;
+            this.materialFlatButtonDelete.Icon = ((System.Drawing.Image)(resources.GetObject("materialFlatButtonDelete.Icon")));
+            this.materialFlatButtonDelete.Location = new System.Drawing.Point(188, 142);
+            this.materialFlatButtonDelete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButtonDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButtonDelete.Name = "materialFlatButtonDelete";
+            this.materialFlatButtonDelete.Primary = false;
+            this.materialFlatButtonDelete.Size = new System.Drawing.Size(97, 36);
+            this.materialFlatButtonDelete.TabIndex = 11;
+            this.materialFlatButtonDelete.Text = "Delete";
+            this.materialFlatButtonDelete.UseVisualStyleBackColor = true;
+            this.materialFlatButtonDelete.Visible = false;
+            this.materialFlatButtonDelete.Click += new System.EventHandler(this.materialFlatButtonDelete_Click);
+            // 
+            // materialFlatButtonUseIconFromApp
+            // 
+            this.materialFlatButtonUseIconFromApp.AutoSize = true;
+            this.materialFlatButtonUseIconFromApp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButtonUseIconFromApp.Depth = 0;
+            this.materialFlatButtonUseIconFromApp.Icon = global::iRacingManager.Properties.Resources.cancel;
+            this.materialFlatButtonUseIconFromApp.Location = new System.Drawing.Point(214, 14);
+            this.materialFlatButtonUseIconFromApp.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButtonUseIconFromApp.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButtonUseIconFromApp.Name = "materialFlatButtonUseIconFromApp";
+            this.materialFlatButtonUseIconFromApp.Primary = false;
+            this.materialFlatButtonUseIconFromApp.Size = new System.Drawing.Size(44, 36);
+            this.materialFlatButtonUseIconFromApp.TabIndex = 10;
+            this.materialFlatButtonUseIconFromApp.UseVisualStyleBackColor = true;
+            this.materialFlatButtonUseIconFromApp.Click += new System.EventHandler(this.materialFlatButtonUseIconFromApp_Click);
             // 
             // materialRaisedButtonOK
             // 
@@ -233,22 +270,6 @@
             this.materialCheckBoxStartHidden.TabIndex = 6;
             this.materialCheckBoxStartHidden.Text = "Start hidden";
             this.materialCheckBoxStartHidden.UseVisualStyleBackColor = true;
-            // 
-            // materialFlatButtonUseIconFromApp
-            // 
-            this.materialFlatButtonUseIconFromApp.AutoSize = true;
-            this.materialFlatButtonUseIconFromApp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialFlatButtonUseIconFromApp.Depth = 0;
-            this.materialFlatButtonUseIconFromApp.Icon = global::iRacingManager.Properties.Resources.cancel;
-            this.materialFlatButtonUseIconFromApp.Location = new System.Drawing.Point(214, 14);
-            this.materialFlatButtonUseIconFromApp.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButtonUseIconFromApp.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButtonUseIconFromApp.Name = "materialFlatButtonUseIconFromApp";
-            this.materialFlatButtonUseIconFromApp.Primary = false;
-            this.materialFlatButtonUseIconFromApp.Size = new System.Drawing.Size(44, 36);
-            this.materialFlatButtonUseIconFromApp.TabIndex = 10;
-            this.materialFlatButtonUseIconFromApp.UseVisualStyleBackColor = true;
-            this.materialFlatButtonUseIconFromApp.Click += new System.EventHandler(this.materialFlatButtonUseIconFromApp_Click);
             // 
             // pictureBoxIcon
             // 
@@ -303,5 +324,6 @@
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonCancel;
         private System.Windows.Forms.BindingSource programBindingSource;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonUseIconFromApp;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonDelete;
     }
 }

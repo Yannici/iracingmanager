@@ -55,6 +55,16 @@ namespace iRacingManager
             }
         }
 
+        internal void removeProgram(Model.Program program)
+        {
+            ProgramControl control = this.ProgramControls.Find((c) => c.Program == program);
+            if (control != null)
+            {
+                this.flowLayoutPanelPrograms.Controls.Remove(control);
+                this._Programs.Remove(program);
+            }
+        }
+
         private void initCustomMaterialDesignFont()
         {
             System.IO.Stream fontStream = new System.IO.MemoryStream(Properties.Resources.Roboto_Medium);
@@ -150,6 +160,12 @@ namespace iRacingManager
             });
         }
 
+        internal void saveSettings()
+        {
+            this._Settings.Programs = this._Programs;
+            this._Settings.Save();
+        }
+
         #endregion
 
         #region Eventhandler
@@ -177,12 +193,13 @@ namespace iRacingManager
         {
             this._Programs.Add(e.AddedProgram);
             this.createProgramControl(e.AddedProgram);
+
+            this.saveSettings();
         }
 
         private void ManagerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this._Settings.Programs = this._Programs;
-            this._Settings.Save();
+            this.saveSettings();
         }
 
         private void timerCheckProcesses_Tick(object sender, EventArgs e)
@@ -201,7 +218,35 @@ namespace iRacingManager
             this.stopAll();
         }
 
+        private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.ProgramControls.Any((c) => c.State == Model.Program.ProcessState.RUNNING || c.State == Model.Program.ProcessState.INACTION)) {
+                if(MessageBox.Show(this, "There are still applications running. When you close this application, all applications will be closed! Continue?", "Close applications?",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    this.ProgramControls.ForEach((c) => c.kill());
+                } else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
         #endregion
 
+        #region Properties
+
+        private List<ProgramControl> ProgramControls
+        {
+            get
+            {
+                return this.flowLayoutPanelPrograms.Controls.Cast<Control>().Where((c) =>
+                {
+                    return c.GetType() == typeof(ProgramControl);
+                }).Cast<ProgramControl>().ToList();
+            }
+        }
+
+        #endregion
     }
 }

@@ -37,6 +37,7 @@ namespace iRacingManager.Gui
             this.materialFlatButtonCancel.Visible = false;
 
             this.Text = "Edit progam";
+            this.materialFlatButtonDelete.Visible = true;
         }
 
         #endregion
@@ -171,5 +172,13 @@ namespace iRacingManager.Gui
 
         #endregion
 
+        private void materialFlatButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Are you sure to delete this program from the program list?", "Are you sure?", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Abort;
+            }
+        }
     }
 }

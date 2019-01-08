@@ -149,5 +149,17 @@
   <ItemGroup>
     <None Include="Resources\iconfinder_play-circle_383091.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_1-04_511562.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_1-04_511562 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_1-04_511562 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_ic_delete_forever_48px_3669360.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

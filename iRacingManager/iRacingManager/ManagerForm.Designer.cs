@@ -52,30 +52,34 @@
             this.materialTabControlMain.Controls.Add(this.tabPageMain);
             this.materialTabControlMain.Controls.Add(this.tabPage2);
             this.materialTabControlMain.Depth = 0;
-            this.materialTabControlMain.Location = new System.Drawing.Point(5, 125);
+            this.materialTabControlMain.Location = new System.Drawing.Point(5, 91);
             this.materialTabControlMain.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControlMain.Name = "materialTabControlMain";
             this.materialTabControlMain.SelectedIndex = 0;
-            this.materialTabControlMain.Size = new System.Drawing.Size(790, 321);
+            this.materialTabControlMain.Size = new System.Drawing.Size(790, 355);
             this.materialTabControlMain.TabIndex = 0;
             // 
             // tabPageMain
             // 
             this.tabPageMain.BackColor = System.Drawing.Color.White;
+            this.tabPageMain.Controls.Add(this.panelActions);
             this.tabPageMain.Controls.Add(this.flowLayoutPanelPrograms);
             this.tabPageMain.Location = new System.Drawing.Point(4, 22);
             this.tabPageMain.Name = "tabPageMain";
             this.tabPageMain.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMain.Size = new System.Drawing.Size(782, 295);
+            this.tabPageMain.Size = new System.Drawing.Size(782, 329);
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Start";
             // 
             // flowLayoutPanelPrograms
             // 
-            this.flowLayoutPanelPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelPrograms.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanelPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanelPrograms.AutoScroll = true;
+            this.flowLayoutPanelPrograms.Location = new System.Drawing.Point(3, 48);
             this.flowLayoutPanelPrograms.Name = "flowLayoutPanelPrograms";
-            this.flowLayoutPanelPrograms.Size = new System.Drawing.Size(776, 289);
+            this.flowLayoutPanelPrograms.Size = new System.Drawing.Size(776, 292);
             this.flowLayoutPanelPrograms.TabIndex = 0;
             // 
             // tabPage2
@@ -83,7 +87,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(782, 295);
+            this.tabPage2.Size = new System.Drawing.Size(782, 281);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -111,9 +115,9 @@
             // 
             this.panelActions.Controls.Add(this.materialFlatButtonStopAll);
             this.panelActions.Controls.Add(this.materialFlatButtonStartAll);
-            this.panelActions.Location = new System.Drawing.Point(15, 100);
+            this.panelActions.Location = new System.Drawing.Point(2, 3);
             this.panelActions.Name = "panelActions";
-            this.panelActions.Size = new System.Drawing.Size(776, 46);
+            this.panelActions.Size = new System.Drawing.Size(777, 46);
             this.panelActions.TabIndex = 3;
             // 
             // materialFlatButtonStopAll
@@ -155,13 +159,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panelActions);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.materialTabControlMain);
-            this.MinimumSize = new System.Drawing.Size(355, 300);
+            this.MinimumSize = new System.Drawing.Size(372, 300);
             this.Name = "ManagerForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "iRacing Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManagerForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManagerForm_FormClosed);
             this.Load += new System.EventHandler(this.ManagerForm_Load);
             this.materialTabControlMain.ResumeLayout(false);
