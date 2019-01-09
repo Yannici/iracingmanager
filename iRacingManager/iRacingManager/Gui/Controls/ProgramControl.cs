@@ -239,27 +239,31 @@ namespace iRacingManager.Gui.Controls
 
         private void checkProgramRunning()
         {
-            Process[] processes = Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(this._Program.FileName));
-            if (processes.Any())
+            if (this.State == Model.Program.ProcessState.STOPPED)
             {
-                IEnumerable<Process> correctProcesses = processes.Where((p) => 
-                    System.IO.Path.GetFullPath(p.MainModule.FileName).Equals(
-                        System.IO.Path.GetFullPath(System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName))));
-
-                if (!correctProcesses.Any())
+                Process[] processes = Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(this._Program.FileName));
+                if (processes.Any())
                 {
-                    return;
-                }
+                    IEnumerable<Process> correctProcesses = processes.Where((p) =>
+                        System.IO.Path.GetFullPath(p.MainModule.FileName).Equals(
+                            System.IO.Path.GetFullPath(System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName))));
 
-                this._Process = correctProcesses.First();
-                this._Program.ExternStart = true;
+                    if (!correctProcesses.Any())
+                    {
+                        return;
+                    }
 
-                if (this.InvokeRequired)
-                {
-                    this.Invoke(new Action(() => this.setRunning()));
-                } else
-                {
-                    this.setRunning();
+                    this._Process = correctProcesses.First();
+                    this._Program.ExternStart = true;
+
+                    if (this.InvokeRequired)
+                    {
+                        this.Invoke(new Action(() => this.setRunning()));
+                    }
+                    else
+                    {
+                        this.setRunning();
+                    }
                 }
             }
         }

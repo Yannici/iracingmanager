@@ -191,7 +191,7 @@ namespace iRacingManager
                 ("Trading Paints", "tradingpaints.exe") };
             foreach((string DisplayName, string Path) program in this._InstalledPrograms)
             {
-                (string, string) knownProgram = knownPrograms.Find((p) => program.DisplayName.Equals(p.Item1));
+                (string, string) knownProgram = knownPrograms.Find((p) => program.DisplayName != null && program.DisplayName.Equals(p.Item1));
                 if (knownProgram.Item1 != null && knownProgram.Item2 != null)
                 {
                     this._Programs.Add(new Model.Program(program.DisplayName, program.DisplayName, program.Path, knownProgram.Item2, string.Empty, true));
