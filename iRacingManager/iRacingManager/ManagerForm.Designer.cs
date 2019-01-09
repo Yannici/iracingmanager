@@ -32,13 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerForm));
             this.materialTabControlMain = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanelPrograms = new System.Windows.Forms.FlowLayoutPanel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            this.timerCheckProcesses = new System.Windows.Forms.Timer(this.components);
             this.panelActions = new System.Windows.Forms.Panel();
             this.materialFlatButtonStopAll = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialFlatButtonStartAll = new MaterialSkin.Controls.MaterialFlatButton();
+            this.flowLayoutPanelPrograms = new System.Windows.Forms.FlowLayoutPanel();
+            this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.timerCheckProcesses = new System.Windows.Forms.Timer(this.components);
             this.materialTabControlMain.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.panelActions.SuspendLayout();
@@ -50,7 +50,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.materialTabControlMain.Controls.Add(this.tabPageMain);
-            this.materialTabControlMain.Controls.Add(this.tabPage2);
+            this.materialTabControlMain.Controls.Add(this.tabPageSettings);
             this.materialTabControlMain.Depth = 0;
             this.materialTabControlMain.Location = new System.Drawing.Point(5, 91);
             this.materialTabControlMain.MouseState = MaterialSkin.MouseState.HOVER;
@@ -70,46 +70,6 @@
             this.tabPageMain.Size = new System.Drawing.Size(782, 329);
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Start";
-            // 
-            // flowLayoutPanelPrograms
-            // 
-            this.flowLayoutPanelPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanelPrograms.AutoScroll = true;
-            this.flowLayoutPanelPrograms.Location = new System.Drawing.Point(3, 48);
-            this.flowLayoutPanelPrograms.Name = "flowLayoutPanelPrograms";
-            this.flowLayoutPanelPrograms.Size = new System.Drawing.Size(776, 292);
-            this.flowLayoutPanelPrograms.TabIndex = 0;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(782, 281);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // materialTabSelector1
-            // 
-            this.materialTabSelector1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialTabSelector1.BaseTabControl = this.materialTabControlMain;
-            this.materialTabSelector1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Location = new System.Drawing.Point(0, 64);
-            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(800, 30);
-            this.materialTabSelector1.TabIndex = 1;
-            this.materialTabSelector1.Text = "materialTabSelector1";
-            // 
-            // timerCheckProcesses
-            // 
-            this.timerCheckProcesses.Interval = 500;
-            this.timerCheckProcesses.Tick += new System.EventHandler(this.timerCheckProcesses_Tick);
             // 
             // panelActions
             // 
@@ -154,6 +114,46 @@
             this.materialFlatButtonStartAll.UseVisualStyleBackColor = true;
             this.materialFlatButtonStartAll.Click += new System.EventHandler(this.materialFlatButtonStartAll_Click);
             // 
+            // flowLayoutPanelPrograms
+            // 
+            this.flowLayoutPanelPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanelPrograms.AutoScroll = true;
+            this.flowLayoutPanelPrograms.Location = new System.Drawing.Point(3, 48);
+            this.flowLayoutPanelPrograms.Name = "flowLayoutPanelPrograms";
+            this.flowLayoutPanelPrograms.Size = new System.Drawing.Size(776, 292);
+            this.flowLayoutPanelPrograms.TabIndex = 0;
+            // 
+            // tabPageSettings
+            // 
+            this.tabPageSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabPageSettings.Name = "tabPageSettings";
+            this.tabPageSettings.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageSettings.Size = new System.Drawing.Size(782, 329);
+            this.tabPageSettings.TabIndex = 1;
+            this.tabPageSettings.Text = "Settings";
+            this.tabPageSettings.UseVisualStyleBackColor = true;
+            // 
+            // materialTabSelector1
+            // 
+            this.materialTabSelector1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialTabSelector1.BaseTabControl = this.materialTabControlMain;
+            this.materialTabSelector1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.materialTabSelector1.Depth = 0;
+            this.materialTabSelector1.Location = new System.Drawing.Point(0, 64);
+            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabSelector1.Name = "materialTabSelector1";
+            this.materialTabSelector1.Size = new System.Drawing.Size(800, 30);
+            this.materialTabSelector1.TabIndex = 1;
+            this.materialTabSelector1.Text = "materialTabSelector1";
+            // 
+            // timerCheckProcesses
+            // 
+            this.timerCheckProcesses.Interval = 500;
+            this.timerCheckProcesses.Tick += new System.EventHandler(this.timerCheckProcesses_Tick);
+            // 
             // ManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,7 +180,7 @@
 
         private MaterialSkin.Controls.MaterialTabControl materialTabControlMain;
         private System.Windows.Forms.TabPage tabPageMain;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageSettings;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelPrograms;
         private System.Windows.Forms.Timer timerCheckProcesses;

@@ -23,6 +23,7 @@ namespace iRacingManager.Model.Settings
 
         public Settings() : base()
         {
+            this.IsNew = true;
             this.Programs = new List<Model.Program>();
         }
 
@@ -64,7 +65,9 @@ namespace iRacingManager.Model.Settings
                         throw new Exception("Settings file could not be read.");
                     }
 
-                    return (Settings) xmlDeserializer.Deserialize(xmlReader);
+                    var settings = (Settings) xmlDeserializer.Deserialize(xmlReader);
+                    settings.IsNew = false;
+                    return settings;
                 }                
             } catch
             {
@@ -77,6 +80,12 @@ namespace iRacingManager.Model.Settings
         #region Properties
 
         public List<Program> Programs
+        {
+            get; set;
+        }
+
+        [System.Xml.Serialization.XmlIgnore]
+        public bool IsNew
         {
             get; set;
         }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace iRacingManager.Gui.Controls
 {
@@ -16,11 +17,11 @@ namespace iRacingManager.Gui.Controls
 
         #region Members
 
-        [System.Runtime.InteropServices.DllImport("User32.dll")]
+        [DllImport("User32.dll")]
         static extern int SetForegroundWindow(IntPtr point);
 
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool IsWindowVisible(IntPtr hWnd);
 
         private Model.Program _Program = null;
@@ -241,7 +242,17 @@ namespace iRacingManager.Gui.Controls
             Process[] processes = Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(this._Program.FileName));
             if (processes.Any())
             {
-                this._Process = processes.First();
+                IEnumerable<Process> correctProcesses = processes.Where((p) => 
+                    System.IO.Path.GetFullPath(p.MainModule.FileName).Equals(
+                        System.IO.Path.GetFullPath(System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName))));
+
+                if (!correctProcesses.Any())
+                {
+                    return;
+                }
+
+                this._Process = correctProcesses.First();
+                this._Program.ExternStart = true;
 
                 if (this.InvokeRequired)
                 {

@@ -21,6 +21,7 @@ namespace iRacingManager
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
+        private List<(string DisplayName, string Path)> _InstalledPrograms = new List<(string DisplayName, string Path)>();
         private Model.Settings.Settings _Settings = null;
         private List<Model.Program> _Programs = new List<Model.Program>();
         private System.Drawing.Text.PrivateFontCollection _FontCollection = new System.Drawing.Text.PrivateFontCollection();
@@ -53,6 +54,23 @@ namespace iRacingManager
                 if (control.GetType() == typeof(NewProgramControl)) continue;
                 ((ProgramControl)control).updateState();
             }
+        }
+
+        private void initializeInstalledPrograms()
+        {
+            string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
+            {
+                foreach (string subkey_name in key.GetSubKeyNames())
+                {
+                    using (RegistryKey subkey = key.OpenSubKey(subkey_name))
+                    {
+                        this._InstalledPrograms.Add((subkey.GetValue("DisplayName")?.ToString(), subkey.GetValue("InstallLocation")?.ToString()));
+                    }
+                }
+            }
+
+            this._InstalledPrograms = this._InstalledPrograms.Distinct().ToList();
         }
 
         internal void removeProgram(Model.Program program)
@@ -166,6 +184,21 @@ namespace iRacingManager
             this._Settings.Save();
         }
 
+        private void firstStart()
+        {
+            List<(string, string)> knownPrograms = new List<(string, string)> {
+                ("CrewChiefV4", "CrewChiefV4.exe"),
+                ("Trading Paints", "tradingpaints.exe") };
+            foreach((string DisplayName, string Path) program in this._InstalledPrograms)
+            {
+                (string, string) knownProgram = knownPrograms.Find((p) => program.DisplayName.Equals(p.Item1));
+                if (knownProgram.Item1 != null && knownProgram.Item2 != null)
+                {
+                    this._Programs.Add(new Model.Program(program.DisplayName, program.DisplayName, program.Path, knownProgram.Item2, string.Empty, true));
+                }
+            }
+        }
+
         #endregion
 
         #region Eventhandler
@@ -174,8 +207,15 @@ namespace iRacingManager
         {
             try
             {
+                this.initializeInstalledPrograms();
                 this.initCustomMaterialDesignFont();
                 this._Settings = Model.Settings.Settings.LoadSettings();
+
+                if (this._Settings.IsNew)
+                {
+                    this.firstStart();
+                }
+
                 this.initializePrograms();
                 this.initializeProgramControls();
                 this.addAddControl();
@@ -220,11 +260,17 @@ namespace iRacingManager
 
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.ProgramControls.Any((c) => c.State == Model.Program.ProcessState.RUNNING || c.State == Model.Program.ProcessState.INACTION)) {
-                if(MessageBox.Show(this, "There are still applications running. When you close this application, all applications will be closed! Continue?", "Close applications?",
+            if (this.ProgramControls.Any((c) => !c.Program.ExternStart && (c.State == Model.Program.ProcessState.RUNNING || c.State == Model.Program.ProcessState.INACTION))) {
+                if(MessageBox.Show(this, "There are still applications running. When you close this application, all started applications will be closed! Continue?", "Close applications?",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    this.ProgramControls.ForEach((c) => c.kill());
+                    this.ProgramControls.ForEach((c) =>
+                    {
+                        if (!c.Program.ExternStart)
+                        {
+                            c.kill();
+                        }
+                    });
                 } else
                 {
                     e.Cancel = true;

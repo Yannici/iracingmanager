@@ -115,6 +115,12 @@ namespace iRacingManager.Model
             get; set;
         }
 
+        [System.Xml.Serialization.XmlIgnore]
+        public bool ExternStart
+        {
+            get; set;
+        }
+
         public string Name
         {
             get; set;
