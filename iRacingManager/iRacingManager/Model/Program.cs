@@ -8,6 +8,9 @@ using System.Drawing;
 
 namespace iRacingManager.Model
 {
+    /// <summary>
+    /// Class represents a startable program in the manager form.
+    /// </summary>
     [Serializable()]
     public class Program
     {
@@ -16,6 +19,7 @@ namespace iRacingManager.Model
 
         internal enum ProcessState
         {
+            NOTEXISTING,
             STOPPED,
             INACTION,
             RUNNING
@@ -25,25 +29,35 @@ namespace iRacingManager.Model
 
         #region Construction
 
-        public Program() : base()
-        {
+        /// <summary>
+        /// Default constructor for serialization
+        /// </summary>
+        public Program() : base() {}
 
-        }
-
-        public Program(string Name, string DisplayName, string InstallLocation, string FileName, string PicturePath, bool StartHidden) : base()
+        /// <summary>
+        /// Initializes a new instance of the iRacingManager.Model.Program class.
+        /// </summary>
+        /// <param name="Name">Name of the program</param>
+        /// <param name="DisplayName">Dispay-Name of the program</param>
+        /// <param name="InstallLocation">Directory where the program is located at.</param>
+        /// <param name="FileName">Filename of the program</param>
+        public Program(string Name, string DisplayName, string InstallLocation, string FileName) : base()
         {
             this.Name = Name;
             this.DisplayName = DisplayName;
             this.InstallLocation = InstallLocation;
             this.FileName = FileName;
-            this.StartHidden = StartHidden;
-            this.PicturePath = PicturePath;
         }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Initializes the program. Eg. checks if the program still exists.
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="installedPrograms"></param>
         internal void initialize(Settings.Settings settings, List<(string DisplayName, string Path)> installedPrograms)
         {
             if (string.IsNullOrEmpty(this.InstallLocation) || !System.IO.File.Exists(System.IO.Path.Combine(this.InstallLocation, this.FileName)))
@@ -72,6 +86,16 @@ namespace iRacingManager.Model
             }
         }
 
+        internal bool exists()
+        {
+            if (string.IsNullOrEmpty(this.InstallLocation) || string.IsNullOrEmpty(this.FileName))
+            {
+                return false;
+            }
+
+            return System.IO.File.Exists(System.IO.Path.Combine(this.InstallLocation, this.FileName));
+        }
+
         #endregion
 
         #region Properties
@@ -79,7 +103,7 @@ namespace iRacingManager.Model
         public string PicturePath
         {
             get; set;
-        }
+        } = string.Empty;
 
         public bool UseIconFromApplication
         {
@@ -99,7 +123,7 @@ namespace iRacingManager.Model
                     return Image.FromFile(this.PicturePath);
                 } else
                 {
-                    if (string.IsNullOrEmpty(this.InstallLocation) || string.IsNullOrEmpty(this.FileName))
+                    if (!this.exists())
                     {
                         return null;
                     }
@@ -113,38 +137,43 @@ namespace iRacingManager.Model
         public Gui.Controls.ProgramControl Control
         {
             get; set;
-        }
+        } = null;
 
         [System.Xml.Serialization.XmlIgnore]
         public bool ExternStart
         {
             get; set;
-        }
+        } = false;
+
+        public bool StartStopWithIRacing
+        {
+            get; set;
+        } = false;
 
         public string Name
         {
             get; set;
-        }
+        } = string.Empty;
 
         public string DisplayName
         {
             get; set;
-        }
+        } = string.Empty;
 
         public string InstallLocation
         {
             get; set;
-        }
+        } = string.Empty;
 
         public string FileName
         {
             get; set;
-        }
+        } = string.Empty;
 
         public bool StartHidden
         {
             get; set;
-        }
+        } = true;
 
         #endregion
 

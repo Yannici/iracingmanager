@@ -17,6 +17,7 @@ namespace iRacingManager.Gui
         #region Members
 
         private Model.Program _Program = null;
+        private bool _EditMode = false;
 
         #endregion
 
@@ -38,6 +39,8 @@ namespace iRacingManager.Gui
 
             this.Text = "Edit progam";
             this.materialFlatButtonDelete.Visible = true;
+
+            this._EditMode = true;
         }
 
         #endregion
@@ -89,21 +92,25 @@ namespace iRacingManager.Gui
                 return;
             }
 
-            if (!System.IO.File.Exists(this.materialSingleLineTextFieldPath.Text))
+            if (!this._EditMode && !System.IO.File.Exists(this.materialSingleLineTextFieldPath.Text))
             {
                 return;
             }
 
-            this._Program.InstallLocation = System.IO.Path.GetDirectoryName(this.materialSingleLineTextFieldPath.Text);
-            this._Program.FileName = System.IO.Path.GetFileName(this.materialSingleLineTextFieldPath.Text);
-            
-            if (string.IsNullOrEmpty(this._Program.Name))
+            if (!this._EditMode)
             {
-                this._Program.Name = System.IO.Path.GetFileNameWithoutExtension(this.materialSingleLineTextFieldPath.Text);
-            }
+                this._Program.InstallLocation = System.IO.Path.GetDirectoryName(this.materialSingleLineTextFieldPath.Text);
+                this._Program.FileName = System.IO.Path.GetFileName(this.materialSingleLineTextFieldPath.Text);
 
-            if (string.IsNullOrEmpty(this._Program.DisplayName)) {
-                this._Program.DisplayName = this._Program.Name;
+                if (string.IsNullOrEmpty(this._Program.Name))
+                {
+                    this._Program.Name = System.IO.Path.GetFileNameWithoutExtension(this.materialSingleLineTextFieldPath.Text);
+                }
+
+                if (string.IsNullOrEmpty(this._Program.DisplayName))
+                {
+                    this._Program.DisplayName = this._Program.Name;
+                }
             }
 
             this.panelDetails.Visible = true;
@@ -177,6 +184,7 @@ namespace iRacingManager.Gui
             if (MessageBox.Show(this, "Are you sure to delete this program from the program list?", "Are you sure?", 
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
+                iRacingManager.Program.Logger.Info($"Program {this._Program.Name} removed.");
                 this.DialogResult = DialogResult.Abort;
             }
         }

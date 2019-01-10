@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using Microsoft.Win32;
 using iRacingManager.Gui.Controls;
+using System.Diagnostics;
 
 namespace iRacingManager
 {
@@ -25,6 +26,7 @@ namespace iRacingManager
         private Model.Settings.Settings _Settings = null;
         private List<Model.Program> _Programs = new List<Model.Program>();
         private System.Drawing.Text.PrivateFontCollection _FontCollection = new System.Drawing.Text.PrivateFontCollection();
+        private Process iRacingProcess = null;
 
         #endregion
 
@@ -49,40 +51,65 @@ namespace iRacingManager
 
         private void checkProgramControls()
         {
-            foreach(Control control in this.flowLayoutPanelPrograms.Controls)
+            try
             {
-                if (control.GetType() == typeof(NewProgramControl)) continue;
-                ((ProgramControl)control).updateState();
+                foreach (Control control in this.flowLayoutPanelPrograms.Controls)
+                {
+                    if (control.GetType() == typeof(NewProgramControl)) continue;
+                    ((ProgramControl)control).updateState();
+                }
+            } catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
+        /// <summary>
+        /// Found at https://stackoverflow.com/questions/28315510/how-to-get-installed-software-path-from-registry/28315920
+        /// </summary>
         private void initializeInstalledPrograms()
         {
-            string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
+            try
             {
-                foreach (string subkey_name in key.GetSubKeyNames())
+                string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
                 {
-                    using (RegistryKey subkey = key.OpenSubKey(subkey_name))
+                    foreach (string subkey_name in key.GetSubKeyNames())
                     {
-                        this._InstalledPrograms.Add((subkey.GetValue("DisplayName")?.ToString(), subkey.GetValue("InstallLocation")?.ToString()));
+                        using (RegistryKey subkey = key.OpenSubKey(subkey_name))
+                        {
+                            this._InstalledPrograms.Add((subkey.GetValue("DisplayName")?.ToString(), subkey.GetValue("InstallLocation")?.ToString()));
+                        }
                     }
                 }
-            }
 
-            this._InstalledPrograms = this._InstalledPrograms.Distinct().ToList();
+                this._InstalledPrograms = this._InstalledPrograms.Distinct().ToList();
+                this._InstalledPrograms.RemoveAll((p) => p.DisplayName == null || p.Path == null);
+            } catch(Exception ex)
+            {
+                throw new Exception("Error on initializing installed programs", ex);
+            }
         }
 
         internal void removeProgram(Model.Program program)
         {
-            ProgramControl control = this.ProgramControls.Find((c) => c.Program == program);
-            if (control != null)
+            try
             {
-                this.flowLayoutPanelPrograms.Controls.Remove(control);
-                this._Programs.Remove(program);
+                ProgramControl control = this.ProgramControls.Find((c) => c.Program == program);
+                if (control != null)
+                {
+                    this.flowLayoutPanelPrograms.Controls.Remove(control);
+                    this._Programs.Remove(program);
+                }
+            } catch (Exception ex)
+            {
+                throw new Exception("Error on removing program control", ex);
             }
         }
 
+        /// <summary>
+        /// Found at https://stackoverflow.com/questions/556147/how-to-quickly-and-easily-embed-fonts-in-winforms-app-in-c-sharp
+        /// </summary>
         private void initCustomMaterialDesignFont()
         {
             System.IO.Stream fontStream = new System.IO.MemoryStream(Properties.Resources.Roboto_Medium);
@@ -119,20 +146,39 @@ namespace iRacingManager
 
         private void initializeProgramControls()
         {
-            foreach(Model.Program program in this._Programs)
+            try
             {
-                this.createProgramControl(program);
+                foreach (Model.Program program in this._Programs)
+                {
+                    this.createProgramControl(program);
+                }
+            } catch(Exception ex)
+            {
+                throw new Exception("Error on initializing program controls", ex);
             }
         }
 
+        /// <summary>
+        /// Creates a program control for a program and adds it to the control list as last child.
+        /// </summary>
+        /// <param name="program"></param>
         private void createProgramControl(Model.Program program)
         {
-            ProgramControl control = new ProgramControl(program, this._FontCollection);
-            program.Control = control;
-            this.flowLayoutPanelPrograms.Controls.Add(control);
-            this.flowLayoutPanelPrograms.Controls.SetChildIndex(control, this.flowLayoutPanelPrograms.Controls.Count - 2);
+            try
+            {
+                ProgramControl control = new ProgramControl(program, this._FontCollection);
+                program.Control = control;
+                this.flowLayoutPanelPrograms.Controls.Add(control);
+                this.flowLayoutPanelPrograms.Controls.SetChildIndex(control, this.flowLayoutPanelPrograms.Controls.Count - 2);
+            } catch (Exception ex)
+            {
+                throw new Exception($"Error on initializing program control for '{program.Name}'", ex);
+            }
         }
 
+        /// <summary>
+        /// Adds the "add program" control
+        /// </summary>
         private void addAddControl()
         {
             NewProgramControl newProgramControl = new NewProgramControl();
@@ -140,32 +186,53 @@ namespace iRacingManager
             this.flowLayoutPanelPrograms.Controls.Add(newProgramControl);
         }
 
+        /// <summary>
+        /// Start all stopped programs.
+        /// </summary>
         private void startAll()
         {
-            foreach (Control control in this.flowLayoutPanelPrograms.Controls)
+            try
             {
-                if (control.GetType() == typeof(NewProgramControl)) continue;
-
-                if(((ProgramControl)control).State != Model.Program.ProcessState.RUNNING)
+                foreach (Control control in this.flowLayoutPanelPrograms.Controls)
                 {
-                    ((ProgramControl)control).start();
+                    if (control.GetType() == typeof(NewProgramControl)) continue;
+
+                    if (((ProgramControl)control).State != Model.Program.ProcessState.RUNNING)
+                    {
+                        ((ProgramControl)control).start();
+                    }
                 }
+            } catch(Exception ex)
+            {
+                throw new Exception("Error on starting all programs", ex);
             }
         }
 
+        /// <summary>
+        /// Stop all running programs.
+        /// </summary>
         private void stopAll()
         {
-            foreach (Control control in this.flowLayoutPanelPrograms.Controls)
+            try
             {
-                if (control.GetType() == typeof(NewProgramControl)) continue;
-
-                if (((ProgramControl)control).State != Model.Program.ProcessState.STOPPED)
+                foreach (Control control in this.flowLayoutPanelPrograms.Controls)
                 {
-                    ((ProgramControl)control).stop();
+                    if (control.GetType() == typeof(NewProgramControl)) continue;
+
+                    if (((ProgramControl)control).State != Model.Program.ProcessState.STOPPED)
+                    {
+                        ((ProgramControl)control).stop();
+                    }
                 }
+            } catch (Exception ex)
+            {
+                throw new Exception("Error on stopping all programs", ex);
             }
         }
 
+        /// <summary>
+        /// Check if the start all / stop all buttons should be visible
+        /// </summary>
         private void checkStartStopButtons()
         {
             this.materialFlatButtonStartAll.Visible = this.flowLayoutPanelPrograms.Controls.Cast<Control>().Any((c) =>
@@ -178,12 +245,18 @@ namespace iRacingManager
             });
         }
 
+        /// <summary>
+        /// Save the settings file.
+        /// </summary>
         internal void saveSettings()
         {
             this._Settings.Programs = this._Programs;
             this._Settings.Save();
         }
 
+        /// <summary>
+        /// Will be executing if the program starts the first time (settings file does not exists).
+        /// </summary>
         private void firstStart()
         {
             List<(string, string)> knownPrograms = new List<(string, string)> {
@@ -194,7 +267,42 @@ namespace iRacingManager
                 (string, string) knownProgram = knownPrograms.Find((p) => program.DisplayName != null && program.DisplayName.Equals(p.Item1));
                 if (knownProgram.Item1 != null && knownProgram.Item2 != null)
                 {
-                    this._Programs.Add(new Model.Program(program.DisplayName, program.DisplayName, program.Path, knownProgram.Item2, string.Empty, true));
+                    this._Programs.Add(new Model.Program(program.DisplayName, program.DisplayName, program.Path, knownProgram.Item2));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks if iracing is started/stopped and starts/stops programs if they are configured to start/stop.
+        /// </summary>
+        private void checkIRacingStarted()
+        {
+            // Check to start programs
+            if (this.iRacingProcess == null)
+            {
+                // Check if iracing started
+                Process[] iracingProcesses = Process.GetProcessesByName("iRacing");
+                if (iracingProcesses.Any())
+                {
+                    this.iRacingProcess = iracingProcesses.First();
+                    foreach(ProgramControl control in this.ProgramControls)
+                    {
+                        if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.STOPPED)
+                        {
+                            control.start();
+                        }
+                    }
+                }
+            } else if (this.iRacingProcess.HasExited)
+            {
+                // Check to stop programs
+                this.iRacingProcess = null;
+                foreach (ProgramControl control in this.ProgramControls)
+                {
+                    if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.RUNNING)
+                    {
+                        control.stop();
+                    }
                 }
             }
         }
@@ -210,6 +318,7 @@ namespace iRacingManager
                 this.initializeInstalledPrograms();
                 this.initCustomMaterialDesignFont();
                 this._Settings = Model.Settings.Settings.LoadSettings();
+                this.settingsBindingSource.DataSource = this._Settings;
 
                 if (this._Settings.IsNew)
                 {
@@ -218,6 +327,7 @@ namespace iRacingManager
 
                 this.initializePrograms();
                 this.initializeProgramControls();
+                this.checkIRacingStarted();
                 this.addAddControl();
                 this._Settings.Save();
 
@@ -226,6 +336,7 @@ namespace iRacingManager
             {
                 MessageBox.Show(this, $"Error on loading iRacing Manager: {ex.Message}", "Error on loading.",
                     MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                throw new Exception("Error on loading", ex);
             }
         }
 
@@ -246,6 +357,7 @@ namespace iRacingManager
         {
             this.checkProgramControls();
             this.checkStartStopButtons();
+            this.checkIRacingStarted();
         }
 
         private void materialFlatButtonStartAll_Click(object sender, EventArgs e)
@@ -277,6 +389,15 @@ namespace iRacingManager
                 }
             }
         }
+
+        #region Settings
+
+        private void materialCheckBoxStartWithWindows_CheckStateChanged(object sender, EventArgs e)
+        {
+            this._Settings.ToggleProgramAutorun();
+        }
+
+        #endregion
 
         #endregion
 

@@ -12,6 +12,10 @@ using System.Runtime.InteropServices;
 
 namespace iRacingManager.Gui.Controls
 {
+
+    /// <summary>
+    /// Control which displays the program information and to starting/stopping the program.
+    /// </summary>
     public partial class ProgramControl : UserControl
     {
 
@@ -27,7 +31,7 @@ namespace iRacingManager.Gui.Controls
         private Model.Program _Program = null;
         private Process _Process = null;
         private bool _StartStopAction = false;
-        private Model.Program.ProcessState _CurrentState = Model.Program.ProcessState.STOPPED;
+        private Model.Program.ProcessState _CurrentState = Model.Program.ProcessState.NOTEXISTING;
 
         #endregion
 
@@ -47,16 +51,17 @@ namespace iRacingManager.Gui.Controls
 
         #region Methods
 
+        /// <summary>
+        /// Stops the program and updates the control.
+        /// </summary>
         internal async void stop()
         {
             try
             {
+                this._StartStopAction = true;
                 this.buttonStart.BackColor = Color.DarkRed;
                 this.buttonStart.Text = "STOPPING ...";
-                this.buttonStart.Enabled = false;
-
-                this.buttonStart.Enabled = false;
-                this._StartStopAction = true;
+                this.buttonStart.Enabled = false;       
                 if (await Task.Run(() => this.stopAsync()))
                 {
                     this.setStopped();
@@ -74,6 +79,9 @@ namespace iRacingManager.Gui.Controls
             }
         }
 
+        /// <summary>
+        /// Starts the program and updates the control.
+        /// </summary>
         internal async void start()
         {
             try
@@ -101,16 +109,22 @@ namespace iRacingManager.Gui.Controls
             }
         }
 
+        /// <summary>
+        /// Set start button to stopped (Text: START)
+        /// </summary>
         internal void setStopped()
         {
             this._Process = null;
             this.buttonStart.Text = "START";
-            this.buttonStart.BackColor = Color.White;
+            this.buttonStart.BackColor = Color.WhiteSmoke;
             this.buttonStart.Enabled = true;
             this.materialFlatButtonModify.Enabled = true;
             this._CurrentState = Model.Program.ProcessState.STOPPED;
         }
 
+        /// <summary>
+        /// Updates the control by state.
+        /// </summary>
         internal void updateState()
         {
             try
@@ -136,10 +150,14 @@ namespace iRacingManager.Gui.Controls
                 }
             } catch(Exception ex)
             {
-                throw ex;
+                throw new Exception("Error on updating program control state", ex);
             }
         }
 
+        /// <summary>
+        /// Stops the program async.
+        /// </summary>
+        /// <returns></returns>
         private bool stopAsync()
         {
             try
@@ -164,6 +182,10 @@ namespace iRacingManager.Gui.Controls
             }
         }
 
+        /// <summary>
+        /// Starts the program async.
+        /// </summary>
+        /// <returns></returns>
         private bool startAsync()
         {
             ProcessStartInfo psi = new ProcessStartInfo(System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName));
@@ -194,6 +216,7 @@ namespace iRacingManager.Gui.Controls
                 return false;
             }
 
+            // If program is visible, wait for the window to set it in the foreground.
             if (!this._Program.StartHidden)
             {
                 IntPtr h = process.MainWindowHandle;
@@ -228,6 +251,9 @@ namespace iRacingManager.Gui.Controls
             return true;
         }
 
+        /// <summary>
+        /// Sets the start button to running (Text: running)
+        /// </summary>
         private void setRunning()
         {
             this.buttonStart.Text = "RUNNING";
@@ -237,10 +263,29 @@ namespace iRacingManager.Gui.Controls
             this._CurrentState = Model.Program.ProcessState.RUNNING;
         }
 
+        /// <summary>
+        /// Sets the start button to not exists (Text: not found)
+        /// </summary>
+        private void setNotExist()
+        {
+            this.buttonStart.Text = "NOT FOUND";
+            this.buttonStart.BackColor = Color.Gray;
+            this.buttonStart.Enabled = false;
+        }
+
+
+        /// <summary>
+        /// Checks if the program was started not by the iRacing Manager.
+        /// </summary>
         private void checkProgramRunning()
         {
             if (this.State == Model.Program.ProcessState.STOPPED)
             {
+                if (this._CurrentState == Model.Program.ProcessState.NOTEXISTING)
+                {
+                    this.setStopped();
+                }
+
                 Process[] processes = Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(this._Program.FileName));
                 if (processes.Any())
                 {
@@ -268,29 +313,22 @@ namespace iRacingManager.Gui.Controls
             }
         }
 
+        /// <summary>
+        /// Updates the control with program information
+        /// </summary>
         private void updateProgram()
         {
             this.pictureBoxPicture.Image = this._Program.getClonedImage();
-            this.materialSLTPath.Text = (string.IsNullOrEmpty(this._Program.InstallLocation)) ?
-                this._Program.DisplayName + " not found" :
+            this.materialSLTPath.Text = (!this._Program.exists()) ?
+                "Program does not exist" :
                 System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName);
         }
 
         #endregion
 
-        #region Eventhandler
-
-        private void ProgramControl_Load(object sender, EventArgs e)
-        {
-            this.pictureBoxPicture.InitialImage = null;
-            this.pictureBoxPicture.SizeMode = PictureBoxSizeMode.Zoom;
-
-            this.updateProgram();
-            this.buttonStart.Cursor = Cursors.Hand;
-            this.setStopped();
-            this.checkProgramRunning();
-        }
-
+        /// <summary>
+        /// Kills the process.
+        /// </summary>
         internal void kill()
         {
             if (this.State == Model.Program.ProcessState.RUNNING)
@@ -300,36 +338,77 @@ namespace iRacingManager.Gui.Controls
             }
         }
 
+        #region Eventhandler
+
+        private void ProgramControl_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.pictureBoxPicture.InitialImage = null;
+                this.pictureBoxPicture.SizeMode = PictureBoxSizeMode.Zoom;
+
+                this.updateProgram();
+                if (this.Program.exists())
+                {
+                    this.buttonStart.Cursor = Cursors.Hand;
+                    this.setStopped();
+                    this.checkProgramRunning();
+                } else
+                {
+                    this.setNotExist();
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show(this, "Error on loading an program control", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                iRacingManager.Program.Logger.Error(ex, "Error on loading an program control");
+            }
+        }
+
         private void materialFlatButtonSearch_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            try
             {
-                ofd.RestoreDirectory = true;
-                ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
-                ofd.Multiselect = false;
-                ofd.Title = "Select " + this._Program.DisplayName + " program ...";
-                ofd.Filter = "Batch-File (*.bat;*.cmd)|*.bat;*.cmd|Executable-File (*.exe)|*.exe";
-                ofd.FilterIndex = 2;
-
-                if (ofd.ShowDialog(this.ParentForm) != DialogResult.OK)
+                using (OpenFileDialog ofd = new OpenFileDialog())
                 {
-                    return;
-                }
+                    ofd.RestoreDirectory = true;
+                    ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
+                    ofd.Multiselect = false;
+                    ofd.Title = "Select " + this._Program.DisplayName + " program ...";
+                    ofd.Filter = "Batch-File (*.bat;*.cmd)|*.bat;*.cmd|Executable-File (*.exe)|*.exe";
+                    ofd.FilterIndex = 2;
 
-                this._Program.InstallLocation = System.IO.Path.GetDirectoryName(ofd.FileName);
-                this._Program.FileName = System.IO.Path.GetFileName(ofd.FileName);
-                this.materialSLTPath.Text = System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName);
+                    if (ofd.ShowDialog(this.ParentForm) != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    this._Program.InstallLocation = System.IO.Path.GetDirectoryName(ofd.FileName);
+                    this._Program.FileName = System.IO.Path.GetFileName(ofd.FileName);
+                    this.materialSLTPath.Text = System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName);
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show(this, "Error on selecting an application", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                iRacingManager.Program.Logger.Error(ex, "Error on selecting an application");
             }
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            if (this.State != Model.Program.ProcessState.RUNNING)
+            try
             {
-                this.start();
-            } else
+                if (this.State != Model.Program.ProcessState.RUNNING)
+                {
+                    this.start();
+                }
+                else
+                {
+                    this.stop();
+                }
+            } catch (Exception ex)
             {
-                this.stop();
+                MessageBox.Show(this, "Error on starting / stopping a program", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                iRacingManager.Program.Logger.Error(ex, "Error on starting / stopping a program");
             }
         }
 
@@ -353,50 +432,63 @@ namespace iRacingManager.Gui.Controls
 
         private void materialFlatButtonModify_Click(object sender, EventArgs e)
         {
-            using (ProgramDialog dialog = new ProgramDialog(this._Program))
+            try
             {
-                dialog.StartPosition = FormStartPosition.CenterParent;
-                switch(dialog.ShowDialog(this))
+                using (ProgramDialog dialog = new ProgramDialog(this._Program))
                 {
-                    case DialogResult.Abort:
-                        ((ManagerForm)this.ParentForm).removeProgram(this._Program);
-                        break;
-                    default:
-                        ((ManagerForm)this.ParentForm).saveSettings();
-                        break;
+                    dialog.StartPosition = FormStartPosition.CenterParent;
+                    switch (dialog.ShowDialog(this))
+                    {
+                        case DialogResult.Abort:
+                            ((ManagerForm)this.ParentForm).removeProgram(this._Program);
+                            break;
+                        default:
+                            ((ManagerForm)this.ParentForm).saveSettings();
+                            break;
+                    }
                 }
+
+                this.updateProgram();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(this, "Error on editing a program", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                iRacingManager.Program.Logger.Error(ex, "Error on editing a program");
             }
-
-            this.updateProgram();
         }
-
-        //private void ProgramControl_Paint(object sender, PaintEventArgs e)
-        //{
-        //    ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, Color.LightGray, ButtonBorderStyle.Solid);
-        //}
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// Gets the state of the process/program in this control
+        /// </summary>
         internal Model.Program.ProcessState State
         {
             get
             {
-                if (this._Process != null && !this._Process.HasExited)
+                if (!this._Program.exists())
                 {
-                    return Model.Program.ProcessState.RUNNING;
+                    return Model.Program.ProcessState.NOTEXISTING;
                 }
-                 
+
                 if (this._StartStopAction)
                 {
                     return Model.Program.ProcessState.INACTION;
+                }
+
+                if (this._Process != null && !this._Process.HasExited)
+                {
+                    return Model.Program.ProcessState.RUNNING;
                 }
 
                 return Model.Program.ProcessState.STOPPED;
             }
         }
 
+        /// <summary>
+        /// Gets the program of this control
+        /// </summary>
         internal Model.Program Program
         {
             get

@@ -37,11 +37,15 @@
             this.materialFlatButtonStartAll = new MaterialSkin.Controls.MaterialFlatButton();
             this.flowLayoutPanelPrograms = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.materialCheckBoxStartWithWindows = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.timerCheckProcesses = new System.Windows.Forms.Timer(this.components);
+            this.settingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialTabControlMain.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.panelActions.SuspendLayout();
+            this.tabPageSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // materialTabControlMain
@@ -127,6 +131,7 @@
             // 
             // tabPageSettings
             // 
+            this.tabPageSettings.Controls.Add(this.materialCheckBoxStartWithWindows);
             this.tabPageSettings.Location = new System.Drawing.Point(4, 22);
             this.tabPageSettings.Name = "tabPageSettings";
             this.tabPageSettings.Padding = new System.Windows.Forms.Padding(3);
@@ -134,6 +139,24 @@
             this.tabPageSettings.TabIndex = 1;
             this.tabPageSettings.Text = "Settings";
             this.tabPageSettings.UseVisualStyleBackColor = true;
+            // 
+            // materialCheckBoxStartWithWindows
+            // 
+            this.materialCheckBoxStartWithWindows.AutoSize = true;
+            this.materialCheckBoxStartWithWindows.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.settingsBindingSource, "StartWithWindows", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialCheckBoxStartWithWindows.Depth = 0;
+            this.materialCheckBoxStartWithWindows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialCheckBoxStartWithWindows.Location = new System.Drawing.Point(14, 15);
+            this.materialCheckBoxStartWithWindows.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxStartWithWindows.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxStartWithWindows.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxStartWithWindows.Name = "materialCheckBoxStartWithWindows";
+            this.materialCheckBoxStartWithWindows.Ripple = true;
+            this.materialCheckBoxStartWithWindows.Size = new System.Drawing.Size(147, 30);
+            this.materialCheckBoxStartWithWindows.TabIndex = 0;
+            this.materialCheckBoxStartWithWindows.Text = "Start with windows";
+            this.materialCheckBoxStartWithWindows.UseVisualStyleBackColor = true;
+            this.materialCheckBoxStartWithWindows.CheckStateChanged += new System.EventHandler(this.materialCheckBoxStartWithWindows_CheckStateChanged);
             // 
             // materialTabSelector1
             // 
@@ -154,6 +177,10 @@
             this.timerCheckProcesses.Interval = 500;
             this.timerCheckProcesses.Tick += new System.EventHandler(this.timerCheckProcesses_Tick);
             // 
+            // settingsBindingSource
+            // 
+            this.settingsBindingSource.DataSource = typeof(iRacingManager.Model.Settings.Settings);
+            // 
             // ManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,6 +199,9 @@
             this.tabPageMain.ResumeLayout(false);
             this.panelActions.ResumeLayout(false);
             this.panelActions.PerformLayout();
+            this.tabPageSettings.ResumeLayout(false);
+            this.tabPageSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -187,6 +217,8 @@
         private System.Windows.Forms.Panel panelActions;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonStartAll;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonStopAll;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBoxStartWithWindows;
+        private System.Windows.Forms.BindingSource settingsBindingSource;
     }
 }
 

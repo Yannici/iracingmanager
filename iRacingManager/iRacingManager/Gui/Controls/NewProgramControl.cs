@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace iRacingManager.Gui.Controls
 {
+
+    /// <summary>
+    /// Control with a button to add a new program
+    /// </summary>
     public partial class NewProgramControl : UserControl
     {
 
@@ -43,6 +47,7 @@ namespace iRacingManager.Gui.Controls
                 dialog.StartPosition = FormStartPosition.CenterParent;
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
+                    Program.Logger.Info($"Program '{dialog.Program.DisplayName}' added.");
                     this.OnProgramAdded(dialog.Program);
                 }
             }

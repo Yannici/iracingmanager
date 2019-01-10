@@ -44,6 +44,7 @@
             this.materialFlatButtonCancel = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialCheckBoxStartHidden = new MaterialSkin.Controls.MaterialCheckBox();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.materialCheckBoxStartStopiRacing = new MaterialSkin.Controls.MaterialCheckBox();
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
@@ -170,6 +171,7 @@
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.White;
+            this.panelDetails.Controls.Add(this.materialCheckBoxStartStopiRacing);
             this.panelDetails.Controls.Add(this.materialFlatButtonDelete);
             this.panelDetails.Controls.Add(this.materialFlatButtonUseIconFromApp);
             this.panelDetails.Controls.Add(this.materialRaisedButtonOK);
@@ -281,6 +283,23 @@
             this.pictureBoxIcon.TabIndex = 0;
             this.pictureBoxIcon.TabStop = false;
             // 
+            // materialCheckBoxStartStopiRacing
+            // 
+            this.materialCheckBoxStartStopiRacing.AutoSize = true;
+            this.materialCheckBoxStartStopiRacing.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StartStopWithIRacing", true));
+            this.materialCheckBoxStartStopiRacing.Depth = 0;
+            this.materialCheckBoxStartStopiRacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialCheckBoxStartStopiRacing.Location = new System.Drawing.Point(113, 101);
+            this.materialCheckBoxStartStopiRacing.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxStartStopiRacing.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxStartStopiRacing.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxStartStopiRacing.Name = "materialCheckBoxStartStopiRacing";
+            this.materialCheckBoxStartStopiRacing.Ripple = true;
+            this.materialCheckBoxStartStopiRacing.Size = new System.Drawing.Size(172, 30);
+            this.materialCheckBoxStartStopiRacing.TabIndex = 12;
+            this.materialCheckBoxStartStopiRacing.Text = "Start/Stop with iRacing";
+            this.materialCheckBoxStartStopiRacing.UseVisualStyleBackColor = true;
+            // 
             // programBindingSource
             // 
             this.programBindingSource.DataSource = typeof(iRacingManager.Model.Program);
@@ -325,5 +344,6 @@
         private System.Windows.Forms.BindingSource programBindingSource;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonUseIconFromApp;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonDelete;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBoxStartStopiRacing;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,10 @@ using System.Xml.Serialization;
 
 namespace iRacingManager.Model.Settings
 {
+
+    /// <summary>
+    /// Settings for the iRacingManager (settings.xml)
+    /// </summary>
     [Serializable()]
     public class Settings
     {
@@ -24,13 +29,16 @@ namespace iRacingManager.Model.Settings
         public Settings() : base()
         {
             this.IsNew = true;
-            this.Programs = new List<Model.Program>();
+            this.Programs = new List<Program>();
         }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Saves/Serializes the setting file (settings.xml).
+        /// </summary>
         internal void Save()
         {
             try
@@ -46,6 +54,34 @@ namespace iRacingManager.Model.Settings
             }
         }
 
+        /// <summary>
+        /// Adds/removes iRacingManager from Autorun, if checked or not.
+        /// </summary>
+        internal void ToggleProgramAutorun()
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
+            {
+                if (this.StartWithWindows)
+                {
+                    if (key.GetValue("iRacingManager") == null)
+                    {
+                        key.SetValue("iRacingManager", "\"" + System.Windows.Forms.Application.ExecutablePath + "\"");
+                    }
+                }
+                else
+                {
+                    if (key.GetValue("iRacingManager") != null)
+                    {
+                        key.DeleteValue("iRacingManager");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Loading settings from file (settings.xml). If there is no file, new settings will be created.
+        /// </summary>
+        /// <returns></returns>
         internal static Settings LoadSettings()
         {
             try
@@ -79,16 +115,27 @@ namespace iRacingManager.Model.Settings
 
         #region Properties
 
+        /// <summary>
+        /// The programs which will be saved to the settings file.
+        /// </summary>
         public List<Program> Programs
         {
             get; set;
         }
 
-        [System.Xml.Serialization.XmlIgnore]
+        [XmlIgnore]
         public bool IsNew
         {
             get; set;
-        }
+        } = false;
+
+        /// <summary>
+        /// Setting if iRacingManager should start with windows.
+        /// </summary>
+        public bool StartWithWindows
+        {
+            get; set;
+        } = false;
 
         #endregion
 
