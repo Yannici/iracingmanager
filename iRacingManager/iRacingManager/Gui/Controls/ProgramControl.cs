@@ -162,7 +162,7 @@ namespace iRacingManager.Gui.Controls
         {
             try
             {
-                if (this.State != Model.Program.ProcessState.RUNNING)
+                if (this._CurrentState != Model.Program.ProcessState.RUNNING || (this._Process == null || this._Process.HasExited))
                 {
                     this.setStopped();
                 }

@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace iRacingManager.Model.Settings
-{
+namespace iRacingManager.Model.Settings {
 
     /// <summary>
     /// Settings for the iRacingManager (settings.xml)
     /// </summary>
-    [Serializable()]
     public class Settings
     {
 
@@ -133,6 +131,22 @@ namespace iRacingManager.Model.Settings
         /// Setting if iRacingManager should start with windows.
         /// </summary>
         public bool StartWithWindows
+        {
+            get; set;
+        } = false;
+
+        /// <summary>
+        /// Setting if iRacingManager should minimize to system tray instead of closing.
+        /// </summary>
+        public bool CloseToSystemTray
+        {
+            get; set;
+        } = false;
+
+        /// <summary>
+        /// Setting if iRacingManager should minimize to system tray instead of "normal" minimize.
+        /// </summary>
+        public bool MinimizeToSystemTray
         {
             get; set;
         } = false;

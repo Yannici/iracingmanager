@@ -26,7 +26,8 @@ namespace iRacingManager
         private Model.Settings.Settings _Settings = null;
         private List<Model.Program> _Programs = new List<Model.Program>();
         private System.Drawing.Text.PrivateFontCollection _FontCollection = new System.Drawing.Text.PrivateFontCollection();
-        private Process iRacingProcess = null;
+        private iRacingSdkWrapper.SdkWrapper _iRacingSdkWrapper = null;
+        private bool _TrayClosing = false;
 
         #endregion
 
@@ -43,6 +44,16 @@ namespace iRacingManager
                 MaterialSkin.Primary.Red800, MaterialSkin.Primary.Blue800,
                 MaterialSkin.Primary.Indigo400, MaterialSkin.Accent.Indigo400,
                 MaterialSkin.TextShade.WHITE);
+
+            this._iRacingSdkWrapper = new iRacingSdkWrapper.SdkWrapper();
+            this._iRacingSdkWrapper.Connected += iRacingConnected;
+            this._iRacingSdkWrapper.Disconnected += iRacingDisconnected;
+
+            this._iRacingSdkWrapper.Start();
+
+            this.labelInfoTitle.Font = new Font("Roboto Medium", 18);
+            this.linkLabelMembersite.Font = new Font("Roboto Medium", 11);
+            this.labelThanks.Font = new Font("Roboto Medium", 9);
         }
 
         #endregion
@@ -72,6 +83,18 @@ namespace iRacingManager
             try
             {
                 string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
+                {
+                    foreach (string subkey_name in key.GetSubKeyNames())
+                    {
+                        using (RegistryKey subkey = key.OpenSubKey(subkey_name))
+                        {
+                            this._InstalledPrograms.Add((subkey.GetValue("DisplayName")?.ToString(), subkey.GetValue("InstallLocation")?.ToString()));
+                        }
+                    }
+                }
+
+                registry_key = @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
                 using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
                 {
                     foreach (string subkey_name in key.GetSubKeyNames())
@@ -261,10 +284,21 @@ namespace iRacingManager
         {
             List<(string, string)> knownPrograms = new List<(string, string)> {
                 ("CrewChiefV4", "CrewChiefV4.exe"),
-                ("Trading Paints", "tradingpaints.exe") };
-            foreach((string DisplayName, string Path) program in this._InstalledPrograms)
+                ("Trading Paints", "Trading Paints.exe"),
+                ("iSpeed*", "iSpeed.exe")};
+            foreach ((string DisplayName, string Path) program in this._InstalledPrograms)
             {
-                (string, string) knownProgram = knownPrograms.Find((p) => program.DisplayName != null && program.DisplayName.Equals(p.Item1));
+                (string, string) knownProgram = knownPrograms.Find((p) =>
+                {
+                    if (p.Item1.EndsWith("*"))
+                    {
+                        return (program.DisplayName.StartsWith(p.Item1.Substring(0, p.Item1.Length - 1)));
+                    } else
+                    {
+                        return program.DisplayName == p.Item1;
+                    }
+                });
+
                 if (knownProgram.Item1 != null && knownProgram.Item2 != null)
                 {
                     this._Programs.Add(new Model.Program(program.DisplayName, program.DisplayName, program.Path, knownProgram.Item2));
@@ -273,36 +307,29 @@ namespace iRacingManager
         }
 
         /// <summary>
-        /// Checks if iracing is started/stopped and starts/stops programs if they are configured to start/stop.
+        /// Executing when iRacing started (SDK was connected).
         /// </summary>
-        private void checkIRacingStarted()
+        private void iRacingConnected(object sender, EventArgs e)
         {
-            // Check to start programs
-            if (this.iRacingProcess == null)
+            foreach(ProgramControl control in this.ProgramControls)
             {
-                // Check if iracing started
-                Process[] iracingProcesses = Process.GetProcessesByName("iRacing");
-                if (iracingProcesses.Any())
+                if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.STOPPED)
                 {
-                    this.iRacingProcess = iracingProcesses.First();
-                    foreach(ProgramControl control in this.ProgramControls)
-                    {
-                        if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.STOPPED)
-                        {
-                            control.start();
-                        }
-                    }
+                    control.start();
                 }
-            } else if (this.iRacingProcess.HasExited)
+            }
+        }
+
+        /// <summary>
+        /// Executing when iRacing stopped (SDK was disconnected).
+        /// </summary>
+        private void iRacingDisconnected(object sender, EventArgs e)
+        {
+            foreach (ProgramControl control in this.ProgramControls)
             {
-                // Check to stop programs
-                this.iRacingProcess = null;
-                foreach (ProgramControl control in this.ProgramControls)
+                if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.RUNNING)
                 {
-                    if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.RUNNING)
-                    {
-                        control.stop();
-                    }
+                    control.start();
                 }
             }
         }
@@ -327,7 +354,6 @@ namespace iRacingManager
 
                 this.initializePrograms();
                 this.initializeProgramControls();
-                this.checkIRacingStarted();
                 this.addAddControl();
                 this._Settings.Save();
 
@@ -351,13 +377,16 @@ namespace iRacingManager
         private void ManagerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.saveSettings();
+            if (this._iRacingSdkWrapper.IsRunning)
+            {
+                this._iRacingSdkWrapper.Stop();
+            }
         }
 
         private void timerCheckProcesses_Tick(object sender, EventArgs e)
         {
             this.checkProgramControls();
             this.checkStartStopButtons();
-            this.checkIRacingStarted();
         }
 
         private void materialFlatButtonStartAll_Click(object sender, EventArgs e)
@@ -372,6 +401,12 @@ namespace iRacingManager
 
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (this._Settings.CloseToSystemTray && !this._TrayClosing)
+            {
+                this.Hide();
+                this.notifyIconTray.Visible = true;
+            }
+
             if (this.ProgramControls.Any((c) => !c.Program.ExternStart && (c.State == Model.Program.ProcessState.RUNNING || c.State == Model.Program.ProcessState.INACTION))) {
                 if(MessageBox.Show(this, "There are still applications running. When you close this application, all started applications will be closed! Continue?", "Close applications?",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -390,12 +425,40 @@ namespace iRacingManager
             }
         }
 
+        private void linkLabelMembersite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://members.iracing.com/membersite/member/CareerStats.do?custid=302443");
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this._TrayClosing = true;
+        }
+
+        private void notifyIconTray_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.notifyIconTray.Visible = false;
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void ManagerForm_Resize(object sender, EventArgs e)
+        {
+            if (this._Settings == null) return;
+            if (this._Settings.MinimizeToSystemTray && this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                this.notifyIconTray.Visible = true;
+            }
+        }
+
         #region Settings
 
         private void materialCheckBoxStartWithWindows_CheckStateChanged(object sender, EventArgs e)
         {
             this._Settings.ToggleProgramAutorun();
         }
+
 
         #endregion
 
@@ -414,6 +477,10 @@ namespace iRacingManager
             }
         }
 
+
+
         #endregion
+
+        
     }
 }
