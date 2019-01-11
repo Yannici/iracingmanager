@@ -334,6 +334,13 @@ namespace iRacingManager
             }
         }
 
+        private void openFromTray()
+        {
+            this.Show();
+            this.notifyIconTray.Visible = false;
+            this.WindowState = FormWindowState.Normal;
+        }
+
         #endregion
 
         #region Eventhandler
@@ -405,9 +412,10 @@ namespace iRacingManager
             {
                 this.Hide();
                 this.notifyIconTray.Visible = true;
+                e.Cancel = true;
             }
 
-            if (this.ProgramControls.Any((c) => !c.Program.ExternStart && (c.State == Model.Program.ProcessState.RUNNING || c.State == Model.Program.ProcessState.INACTION))) {
+            if (!e.Cancel && this.ProgramControls.Any((c) => !c.Program.ExternStart && (c.State == Model.Program.ProcessState.RUNNING || c.State == Model.Program.ProcessState.INACTION))) {
                 if(MessageBox.Show(this, "There are still applications running. When you close this application, all started applications will be closed! Continue?", "Close applications?",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
@@ -423,6 +431,11 @@ namespace iRacingManager
                     e.Cancel = true;
                 }
             }
+
+            if (e.Cancel)
+            {
+                this._TrayClosing = false;
+            }
         }
 
         private void linkLabelMembersite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -433,13 +446,17 @@ namespace iRacingManager
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this._TrayClosing = true;
+            this.Close();
         }
 
         private void notifyIconTray_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.Show();
-            this.notifyIconTray.Visible = false;
-            this.WindowState = FormWindowState.Normal;
+            this.openFromTray();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.openFromTray();
         }
 
         private void ManagerForm_Resize(object sender, EventArgs e)
@@ -479,8 +496,8 @@ namespace iRacingManager
 
 
 
+
         #endregion
 
-        
     }
 }
