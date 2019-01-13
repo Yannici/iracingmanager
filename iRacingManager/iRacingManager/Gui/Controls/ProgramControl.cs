@@ -193,6 +193,7 @@ namespace iRacingManager.Gui.Controls
             if (this._Program.StartHidden)
             {
                 psi.WindowStyle = ProcessWindowStyle.Hidden;
+                psi.CreateNoWindow = true;
             }
 
             Process process = Process.Start(psi);
