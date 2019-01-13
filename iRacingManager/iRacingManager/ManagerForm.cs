@@ -28,6 +28,10 @@ namespace iRacingManager
         private System.Drawing.Text.PrivateFontCollection _FontCollection = new System.Drawing.Text.PrivateFontCollection();
         private iRacingSdkWrapper.SdkWrapper _iRacingSdkWrapper = null;
         private bool _TrayClosing = false;
+        private bool _UpdateClosing = false;
+
+        private const string URL = "https://irm.yannici.de/";
+        private const string UPDATE_CHECK_NAME = "version.txt";
 
         #endregion
 
@@ -285,7 +289,8 @@ namespace iRacingManager
             List<(string, string)> knownPrograms = new List<(string, string)> {
                 ("CrewChiefV4", "CrewChiefV4.exe"),
                 ("Trading Paints", "Trading Paints.exe"),
-                ("iSpeed*", "iSpeed.exe")};
+                ("iSpeed*", "iSpeed.exe"),
+                ("Joel Real Timing*", "Timing.exe")};
             foreach ((string DisplayName, string Path) program in this._InstalledPrograms)
             {
                 (string, string) knownProgram = knownPrograms.Find((p) =>
@@ -329,7 +334,7 @@ namespace iRacingManager
             {
                 if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.RUNNING)
                 {
-                    control.start();
+                    control.stop();
                 }
             }
         }
@@ -339,6 +344,60 @@ namespace iRacingManager
             this.Show();
             this.notifyIconTray.Visible = false;
             this.WindowState = FormWindowState.Normal;
+        }
+
+        private bool newUpdateAvailable(string newVersionString)
+        {
+            Version currentVersion = Version.Parse(Application.ProductVersion);
+            Version newVersion = Version.Parse(newVersionString);
+
+            return (newVersion > currentVersion);
+        }
+
+        private async void checkForUpdates()
+        {
+            System.Net.WebRequest request = null;
+            System.Net.WebResponse response = null;
+            string currentVersion = string.Empty;
+            string updateSetupName = string.Empty;
+
+            try
+                {
+                request = System.Net.WebRequest.Create(ManagerForm.URL + ManagerForm.UPDATE_CHECK_NAME);
+                response = await request.GetResponseAsync();
+
+                using (System.IO.Stream responseStream = response.GetResponseStream())
+                {
+                    using (System.IO.StreamReader reader = new System.IO.StreamReader(responseStream))
+                    {
+                        currentVersion = await reader.ReadLineAsync();
+                        updateSetupName = await reader.ReadLineAsync();
+                    }
+                }
+
+                // Check if new update
+                if (this.newUpdateAvailable(currentVersion))
+                {
+                    Gui.UpdateDialog updateDialog = new Gui.UpdateDialog(Application.ProductVersion, currentVersion, ManagerForm.URL, updateSetupName);
+                    updateDialog.StartPosition = FormStartPosition.CenterScreen;
+                    updateDialog.Show();
+
+                    updateDialog.UpdateDownloadCompleted += (object sender, EventArgs e) =>
+                    {
+                        this._UpdateClosing = true;
+                        Process.Start(updateSetupName);
+                        this.Close();
+                    };
+
+                    updateDialog.BringToFront();
+                }
+            } catch
+            {
+                // No exceptions at update checking.
+            } finally
+            {
+                response?.Close();
+            }
         }
 
         #endregion
@@ -364,6 +423,7 @@ namespace iRacingManager
                 this.addAddControl();
                 this._Settings.Save();
 
+                this.checkForUpdates();
                 this.timerCheckProcesses.Start();
             } catch(Exception ex)
             {
@@ -408,6 +468,19 @@ namespace iRacingManager
 
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (this._UpdateClosing)
+            {
+                this.ProgramControls.ForEach((c) =>
+                {
+                    if (!c.Program.ExternStart)
+                    {
+                        c.kill();
+                    }
+                });
+                e.Cancel = false;
+                return;
+            }
+
             if (this._Settings.CloseToSystemTray && !this._TrayClosing)
             {
                 this.Hide();
