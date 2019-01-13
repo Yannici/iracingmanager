@@ -11,6 +11,7 @@ using MaterialSkin.Controls;
 using Microsoft.Win32;
 using iRacingManager.Gui.Controls;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace iRacingManager
 {
@@ -19,8 +20,14 @@ namespace iRacingManager
 
         #region Members
 
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
+        [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
+        public static extern IntPtr FindWindow(String lpClassName, String lpWindowName);
+
+        [DllImport("USER32.DLL")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
 
         private List<(string DisplayName, string Path)> _InstalledPrograms = new List<(string DisplayName, string Path)>();
         private Model.Settings.Settings _Settings = null;
@@ -406,6 +413,36 @@ namespace iRacingManager
             }
         }
 
+        private bool checkAlreadyRunning()
+        {
+            Process[] runningProcesses = Process.GetProcessesByName("iRacingManager");
+            if (runningProcesses.Any())
+            {
+                foreach (Process runningProcess in runningProcesses)
+                {
+                    if (runningProcess.Id != Process.GetCurrentProcess().Id)
+                    {
+                        // Get a handle to the application.
+                        IntPtr handle = runningProcess.MainWindowHandle;
+
+                        // Verify the application is a running process.
+                        if (handle == IntPtr.Zero)
+                        {
+                            continue;
+                        }
+
+                        // Make the application the foreground application
+                        SetForegroundWindow(handle);
+
+                        Process.GetCurrentProcess().Kill();
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         #endregion
 
         #region Eventhandler
@@ -414,6 +451,11 @@ namespace iRacingManager
         {
             try
             {
+                if (this.checkAlreadyRunning())
+                {
+                    return;
+                }
+
                 this.initializeInstalledPrograms();
                 this.initCustomMaterialDesignFont();
                 this._Settings = Model.Settings.Settings.LoadSettings();
@@ -527,7 +569,7 @@ namespace iRacingManager
             this._TrayClosing = true;
             this.Close();
         }
-
+        
         private void notifyIconTray_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.openFromTray();
