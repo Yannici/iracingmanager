@@ -173,7 +173,7 @@ namespace iRacingManager.Model
         public bool StartHidden
         {
             get; set;
-        } = true;
+        } = false;
 
         #endregion
 

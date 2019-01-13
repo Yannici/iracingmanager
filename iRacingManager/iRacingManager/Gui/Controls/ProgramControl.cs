@@ -189,6 +189,7 @@ namespace iRacingManager.Gui.Controls
         private bool startAsync()
         {
             ProcessStartInfo psi = new ProcessStartInfo(System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName));
+            Process process = null;
 
             if (this._Program.StartHidden)
             {
@@ -196,13 +197,21 @@ namespace iRacingManager.Gui.Controls
                 psi.CreateNoWindow = true;
             }
 
-            Process process = Process.Start(psi);
+            try
+            {
+                process = Process.Start(psi);
+            } catch(InvalidOperationException)
+            {
+                psi.UseShellExecute = false;
+                process = Process.Start(psi);
+            }
 
             if (process == null)
             {
                 return false;
             }
 
+            process.OutputDataReceived += Process_OutputDataReceived;
             try
             {
                 process.WaitForInputIdle(10000); // 10 seconds wait for starting
@@ -250,6 +259,11 @@ namespace iRacingManager.Gui.Controls
 
             this._Process = process;
             return true;
+        }
+
+        private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            MessageBox.Show(e.Data);
         }
 
         /// <summary>
