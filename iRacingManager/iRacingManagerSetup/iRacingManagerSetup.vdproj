@@ -94,6 +94,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_0E125A1FA6F638AC0AEEC8DE1C29172A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -131,12 +137,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4EA78A89CEA61ACEDFEFE9F596D35060"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -512,15 +512,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:iRacingManager"
-        "ProductCode" = "8:{6B3B3119-8414-4896-B1B4-0BAF9BBF4ED3}"
-        "PackageCode" = "8:{D2378011-95AE-4452-9559-90085B22F74E}"
+        "ProductCode" = "8:{008522D8-D962-457E-93E9-A4ADDC3DFCBD}"
+        "PackageCode" = "8:{33D3155B-E791-4529-BB44-EBE8E123F3CD}"
         "UpgradeCode" = "8:{6190A9A5-9E93-45CE-93CA-9840D69EFADE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.7"
+        "ProductVersion" = "8:1.0.8"
         "Manufacturer" = "8: Yannic Schnetz"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -640,7 +640,7 @@
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
+            "Transitive" = "11:TRUE"
             "Target" = "8:_E11DAA0132B045049A10C9997FDAE60F"
             "Folder" = "8:_FF35A9872C1441399DBCA9A93B8D0826"
             "WorkingFolder" = "8:_B863609B68734D3E8ED712380405675D"

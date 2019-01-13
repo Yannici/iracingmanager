@@ -148,7 +148,7 @@ namespace iRacingManager.Model
         public bool StartStopWithIRacing
         {
             get; set;
-        } = false;
+        } = true;
 
         public string Name
         {
