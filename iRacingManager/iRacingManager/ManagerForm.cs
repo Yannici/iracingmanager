@@ -354,7 +354,7 @@ namespace iRacingManager
             return (newVersion > currentVersion);
         }
 
-        private async void checkForUpdates()
+        private async void checkForUpdates(bool manualCheck)
         {
             System.Net.WebRequest request = null;
             System.Net.WebResponse response = null;
@@ -381,7 +381,7 @@ namespace iRacingManager
                 if (this.newUpdateAvailable(currentVersion))
                 {
                     Gui.UpdateDialog updateDialog = new Gui.UpdateDialog(Application.ProductVersion, currentVersion, ManagerForm.URL, updateSetupName);
-                    updateDialog.StartPosition = FormStartPosition.CenterScreen;
+                    updateDialog.StartPosition = FormStartPosition.CenterParent;
                     updateDialog.Show();
 
                     updateDialog.UpdateDownloadCompleted += (object sender, EventArgs e) =>
@@ -392,6 +392,9 @@ namespace iRacingManager
                     };
 
                     updateDialog.BringToFront();
+                } else if(manualCheck)
+                {
+                    MessageBox.Show(this, "There is no update available!", "No update", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
             } catch
             {
@@ -425,7 +428,7 @@ namespace iRacingManager
                 this.addAddControl();
                 this._Settings.Save();
 
-                this.checkForUpdates();
+                this.checkForUpdates(false);
                 this.timerCheckProcesses.Start();
             } catch(Exception ex)
             {
@@ -546,7 +549,7 @@ namespace iRacingManager
 
         private void materialFlatButtonCheckUpdates_Click(object sender, EventArgs e)
         {
-            this.checkForUpdates();
+            this.checkForUpdates(true);
         }
 
         #region Settings
