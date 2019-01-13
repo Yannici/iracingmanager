@@ -67,10 +67,17 @@ namespace iRacingManager.Gui
             {
                 this.setDownloadMode();
 
+                string downloadFolder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "iRacingManager", this._DownloadFileName);
+
+                if (System.IO.File.Exists(downloadFolder))
+                {
+                    System.IO.File.Delete(downloadFolder);
+                }
+
                 this._DownloadClient = new System.Net.WebClient();
                 this._DownloadClient.DownloadProgressChanged += Client_DownloadProgressChanged;
                 this._DownloadClient.DownloadFileCompleted += Client_DownloadFileCompleted;
-                this._DownloadClient.DownloadFileAsync(new Uri(this._DownloadUri + this._DownloadFileName), this._DownloadFileName);
+                this._DownloadClient.DownloadFileAsync(new Uri(this._DownloadUri + this._DownloadFileName), downloadFolder);
             } catch(Exception ex)
             {
                 MessageBox.Show(this, "Error on downloading the update.", "Error on update",

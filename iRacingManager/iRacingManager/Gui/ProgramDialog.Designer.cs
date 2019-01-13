@@ -34,33 +34,33 @@
             this.materialSingleLineTextFieldIconPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabelName = new MaterialSkin.Controls.MaterialLabel();
             this.materialSingleLineTextField2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialFlatButtonSelectIcon = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialSingleLineTextFieldPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialFlatButtonSelectApp = new MaterialSkin.Controls.MaterialFlatButton();
             this.panelDetails = new System.Windows.Forms.Panel();
+            this.materialCheckBoxStartStopiRacing = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialFlatButtonDelete = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialFlatButtonUseIconFromApp = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialRaisedButtonOK = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialFlatButtonCancel = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialCheckBoxStartHidden = new MaterialSkin.Controls.MaterialCheckBox();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
-            this.materialCheckBoxStartStopiRacing = new MaterialSkin.Controls.MaterialCheckBox();
-            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
             this.panelDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // materialLabelIcon
             // 
             this.materialLabelIcon.AutoSize = true;
             this.materialLabelIcon.Depth = 0;
-            this.materialLabelIcon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabelIcon.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabelIcon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelIcon.Location = new System.Drawing.Point(56, 0);
             this.materialLabelIcon.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelIcon.Name = "materialLabelIcon";
-            this.materialLabelIcon.Size = new System.Drawing.Size(36, 18);
+            this.materialLabelIcon.Size = new System.Drawing.Size(38, 19);
             this.materialLabelIcon.TabIndex = 1;
             this.materialLabelIcon.Text = "Icon";
             // 
@@ -88,12 +88,12 @@
             // 
             this.materialLabelName.AutoSize = true;
             this.materialLabelName.Depth = 0;
-            this.materialLabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.materialLabelName.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelName.Location = new System.Drawing.Point(1, 53);
             this.materialLabelName.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelName.Name = "materialLabelName";
-            this.materialLabelName.Size = new System.Drawing.Size(48, 18);
+            this.materialLabelName.Size = new System.Drawing.Size(49, 19);
             this.materialLabelName.TabIndex = 3;
             this.materialLabelName.Text = "Name";
             // 
@@ -189,6 +189,23 @@
             this.panelDetails.TabIndex = 8;
             this.panelDetails.Visible = false;
             // 
+            // materialCheckBoxStartStopiRacing
+            // 
+            this.materialCheckBoxStartStopiRacing.AutoSize = true;
+            this.materialCheckBoxStartStopiRacing.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StartStopWithIRacing", true));
+            this.materialCheckBoxStartStopiRacing.Depth = 0;
+            this.materialCheckBoxStartStopiRacing.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxStartStopiRacing.Location = new System.Drawing.Point(113, 101);
+            this.materialCheckBoxStartStopiRacing.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxStartStopiRacing.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxStartStopiRacing.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxStartStopiRacing.Name = "materialCheckBoxStartStopiRacing";
+            this.materialCheckBoxStartStopiRacing.Ripple = true;
+            this.materialCheckBoxStartStopiRacing.Size = new System.Drawing.Size(172, 30);
+            this.materialCheckBoxStartStopiRacing.TabIndex = 12;
+            this.materialCheckBoxStartStopiRacing.Text = "Start/Stop with iRacing";
+            this.materialCheckBoxStartStopiRacing.UseVisualStyleBackColor = true;
+            // 
             // materialFlatButtonDelete
             // 
             this.materialFlatButtonDelete.AutoSize = true;
@@ -261,7 +278,7 @@
             this.materialCheckBoxStartHidden.AutoSize = true;
             this.materialCheckBoxStartHidden.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StartHidden", true));
             this.materialCheckBoxStartHidden.Depth = 0;
-            this.materialCheckBoxStartHidden.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialCheckBoxStartHidden.Font = new System.Drawing.Font("Roboto", 10F);
             this.materialCheckBoxStartHidden.Location = new System.Drawing.Point(-3, 101);
             this.materialCheckBoxStartHidden.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxStartHidden.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -283,27 +300,6 @@
             this.pictureBoxIcon.TabIndex = 0;
             this.pictureBoxIcon.TabStop = false;
             // 
-            // materialCheckBoxStartStopiRacing
-            // 
-            this.materialCheckBoxStartStopiRacing.AutoSize = true;
-            this.materialCheckBoxStartStopiRacing.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StartStopWithIRacing", true));
-            this.materialCheckBoxStartStopiRacing.Depth = 0;
-            this.materialCheckBoxStartStopiRacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBoxStartStopiRacing.Location = new System.Drawing.Point(113, 101);
-            this.materialCheckBoxStartStopiRacing.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckBoxStartStopiRacing.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckBoxStartStopiRacing.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckBoxStartStopiRacing.Name = "materialCheckBoxStartStopiRacing";
-            this.materialCheckBoxStartStopiRacing.Ripple = true;
-            this.materialCheckBoxStartStopiRacing.Size = new System.Drawing.Size(172, 30);
-            this.materialCheckBoxStartStopiRacing.TabIndex = 12;
-            this.materialCheckBoxStartStopiRacing.Text = "Start/Stop with iRacing";
-            this.materialCheckBoxStartStopiRacing.UseVisualStyleBackColor = true;
-            // 
-            // programBindingSource
-            // 
-            this.programBindingSource.DataSource = typeof(iRacingManager.Model.Program);
-            // 
             // ProgramDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,15 +309,16 @@
             this.Controls.Add(this.panelDetails);
             this.Controls.Add(this.materialFlatButtonSelectApp);
             this.Controls.Add(this.materialSingleLineTextFieldPath);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProgramDialog";
             this.Text = "Add program";
             this.Load += new System.EventHandler(this.ProgramDialog_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).EndInit();
             this.panelDetails.ResumeLayout(false);
             this.panelDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

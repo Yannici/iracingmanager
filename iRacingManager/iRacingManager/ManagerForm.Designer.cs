@@ -31,35 +31,38 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerForm));
             this.materialTabControlMain = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.panelActions = new System.Windows.Forms.Panel();
+            this.materialFlatButtonStopAll = new MaterialSkin.Controls.MaterialFlatButton();
+            this.materialFlatButtonStartAll = new MaterialSkin.Controls.MaterialFlatButton();
+            this.flowLayoutPanelPrograms = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.materialCheckBoxMinimizeTray = new MaterialSkin.Controls.MaterialCheckBox();
+            this.settingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialCheckBoxSystemTray = new MaterialSkin.Controls.MaterialCheckBox();
             this.labelThanks = new System.Windows.Forms.Label();
             this.labelInfoTitle = new System.Windows.Forms.Label();
             this.linkLabelMembersite = new System.Windows.Forms.LinkLabel();
             this.materialLabelInfo1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialCheckBoxStartWithWindows = new MaterialSkin.Controls.MaterialCheckBox();
-            this.tabPageMain = new System.Windows.Forms.TabPage();
-            this.panelActions = new System.Windows.Forms.Panel();
-            this.materialFlatButtonStopAll = new MaterialSkin.Controls.MaterialFlatButton();
-            this.materialFlatButtonStartAll = new MaterialSkin.Controls.MaterialFlatButton();
-            this.flowLayoutPanelPrograms = new System.Windows.Forms.FlowLayoutPanel();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.timerCheckProcesses = new System.Windows.Forms.Timer(this.components);
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.notifyIconTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.materialFlatButtonCheckUpdates = new MaterialSkin.Controls.MaterialFlatButton();
+            this.materialLabelCurrentVersion = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabelCurrentVersionValue = new MaterialSkin.Controls.MaterialLabel();
             this.materialTabControlMain.SuspendLayout();
-            this.tabPageSettings.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.panelActions.SuspendLayout();
+            this.tabPageSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.contextMenuStripTray.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.settingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // materialTabControlMain
@@ -76,117 +79,6 @@
             this.materialTabControlMain.SelectedIndex = 0;
             this.materialTabControlMain.Size = new System.Drawing.Size(790, 355);
             this.materialTabControlMain.TabIndex = 0;
-            // 
-            // tabPageSettings
-            // 
-            this.tabPageSettings.Controls.Add(this.materialCheckBoxMinimizeTray);
-            this.tabPageSettings.Controls.Add(this.materialCheckBoxSystemTray);
-            this.tabPageSettings.Controls.Add(this.labelThanks);
-            this.tabPageSettings.Controls.Add(this.labelInfoTitle);
-            this.tabPageSettings.Controls.Add(this.linkLabelMembersite);
-            this.tabPageSettings.Controls.Add(this.materialLabelInfo1);
-            this.tabPageSettings.Controls.Add(this.materialCheckBoxStartWithWindows);
-            this.tabPageSettings.Location = new System.Drawing.Point(4, 22);
-            this.tabPageSettings.Name = "tabPageSettings";
-            this.tabPageSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSettings.Size = new System.Drawing.Size(782, 329);
-            this.tabPageSettings.TabIndex = 1;
-            this.tabPageSettings.Text = "Settings & Info";
-            this.tabPageSettings.UseVisualStyleBackColor = true;
-            // 
-            // materialCheckBoxMinimizeTray
-            // 
-            this.materialCheckBoxMinimizeTray.AutoSize = true;
-            this.materialCheckBoxMinimizeTray.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.settingsBindingSource, "MinimizeToSystemTray", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.materialCheckBoxMinimizeTray.Depth = 0;
-            this.materialCheckBoxMinimizeTray.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBoxMinimizeTray.Location = new System.Drawing.Point(347, 15);
-            this.materialCheckBoxMinimizeTray.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckBoxMinimizeTray.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckBoxMinimizeTray.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckBoxMinimizeTray.Name = "materialCheckBoxMinimizeTray";
-            this.materialCheckBoxMinimizeTray.Ripple = true;
-            this.materialCheckBoxMinimizeTray.Size = new System.Drawing.Size(177, 30);
-            this.materialCheckBoxMinimizeTray.TabIndex = 8;
-            this.materialCheckBoxMinimizeTray.Text = "Minimize to system tray";
-            this.materialCheckBoxMinimizeTray.UseVisualStyleBackColor = true;
-            // 
-            // materialCheckBoxSystemTray
-            // 
-            this.materialCheckBoxSystemTray.AutoSize = true;
-            this.materialCheckBoxSystemTray.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.settingsBindingSource, "CloseToSystemTray", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.materialCheckBoxSystemTray.Depth = 0;
-            this.materialCheckBoxSystemTray.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBoxSystemTray.Location = new System.Drawing.Point(177, 15);
-            this.materialCheckBoxSystemTray.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckBoxSystemTray.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckBoxSystemTray.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckBoxSystemTray.Name = "materialCheckBoxSystemTray";
-            this.materialCheckBoxSystemTray.Ripple = true;
-            this.materialCheckBoxSystemTray.Size = new System.Drawing.Size(156, 30);
-            this.materialCheckBoxSystemTray.TabIndex = 7;
-            this.materialCheckBoxSystemTray.Text = "Close to system tray";
-            this.materialCheckBoxSystemTray.UseVisualStyleBackColor = true;
-            // 
-            // labelThanks
-            // 
-            this.labelThanks.AutoSize = true;
-            this.labelThanks.Location = new System.Drawing.Point(11, 110);
-            this.labelThanks.Name = "labelThanks";
-            this.labelThanks.Size = new System.Drawing.Size(255, 13);
-            this.labelThanks.TabIndex = 6;
-            this.labelThanks.Text = "Thanks to Nick Thissen for the iRacingSDKWrapper";
-            // 
-            // labelInfoTitle
-            // 
-            this.labelInfoTitle.AutoSize = true;
-            this.labelInfoTitle.Location = new System.Drawing.Point(8, 54);
-            this.labelInfoTitle.Name = "labelInfoTitle";
-            this.labelInfoTitle.Size = new System.Drawing.Size(59, 13);
-            this.labelInfoTitle.TabIndex = 5;
-            this.labelInfoTitle.Text = "Information";
-            // 
-            // linkLabelMembersite
-            // 
-            this.linkLabelMembersite.AutoSize = true;
-            this.linkLabelMembersite.Location = new System.Drawing.Point(196, 89);
-            this.linkLabelMembersite.Name = "linkLabelMembersite";
-            this.linkLabelMembersite.Size = new System.Drawing.Size(82, 13);
-            this.linkLabelMembersite.TabIndex = 3;
-            this.linkLabelMembersite.TabStop = true;
-            this.linkLabelMembersite.Text = "Yannic Schnetz";
-            this.linkLabelMembersite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMembersite_LinkClicked);
-            // 
-            // materialLabelInfo1
-            // 
-            this.materialLabelInfo1.AutoSize = true;
-            this.materialLabelInfo1.Depth = 0;
-            this.materialLabelInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.materialLabelInfo1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabelInfo1.Location = new System.Drawing.Point(10, 89);
-            this.materialLabelInfo1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabelInfo1.Name = "materialLabelInfo1";
-            this.materialLabelInfo1.Size = new System.Drawing.Size(187, 18);
-            this.materialLabelInfo1.TabIndex = 2;
-            this.materialLabelInfo1.Text = "iRacingManager created by";
-            // 
-            // materialCheckBoxStartWithWindows
-            // 
-            this.materialCheckBoxStartWithWindows.AutoSize = true;
-            this.materialCheckBoxStartWithWindows.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.settingsBindingSource, "StartWithWindows", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.materialCheckBoxStartWithWindows.Depth = 0;
-            this.materialCheckBoxStartWithWindows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBoxStartWithWindows.Location = new System.Drawing.Point(14, 15);
-            this.materialCheckBoxStartWithWindows.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckBoxStartWithWindows.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckBoxStartWithWindows.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckBoxStartWithWindows.Name = "materialCheckBoxStartWithWindows";
-            this.materialCheckBoxStartWithWindows.Ripple = true;
-            this.materialCheckBoxStartWithWindows.Size = new System.Drawing.Size(147, 30);
-            this.materialCheckBoxStartWithWindows.TabIndex = 0;
-            this.materialCheckBoxStartWithWindows.Text = "Start with windows";
-            this.materialCheckBoxStartWithWindows.UseVisualStyleBackColor = true;
-            this.materialCheckBoxStartWithWindows.CheckStateChanged += new System.EventHandler(this.materialCheckBoxStartWithWindows_CheckStateChanged);
             // 
             // tabPageMain
             // 
@@ -254,6 +146,120 @@
             this.flowLayoutPanelPrograms.Size = new System.Drawing.Size(776, 292);
             this.flowLayoutPanelPrograms.TabIndex = 0;
             // 
+            // tabPageSettings
+            // 
+            this.tabPageSettings.Controls.Add(this.materialLabelCurrentVersionValue);
+            this.tabPageSettings.Controls.Add(this.materialLabelCurrentVersion);
+            this.tabPageSettings.Controls.Add(this.materialFlatButtonCheckUpdates);
+            this.tabPageSettings.Controls.Add(this.materialCheckBoxMinimizeTray);
+            this.tabPageSettings.Controls.Add(this.materialCheckBoxSystemTray);
+            this.tabPageSettings.Controls.Add(this.labelThanks);
+            this.tabPageSettings.Controls.Add(this.labelInfoTitle);
+            this.tabPageSettings.Controls.Add(this.linkLabelMembersite);
+            this.tabPageSettings.Controls.Add(this.materialLabelInfo1);
+            this.tabPageSettings.Controls.Add(this.materialCheckBoxStartWithWindows);
+            this.tabPageSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabPageSettings.Name = "tabPageSettings";
+            this.tabPageSettings.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageSettings.Size = new System.Drawing.Size(782, 329);
+            this.tabPageSettings.TabIndex = 1;
+            this.tabPageSettings.Text = "Settings & Info";
+            this.tabPageSettings.UseVisualStyleBackColor = true;
+            // 
+            // materialCheckBoxMinimizeTray
+            // 
+            this.materialCheckBoxMinimizeTray.AutoSize = true;
+            this.materialCheckBoxMinimizeTray.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.settingsBindingSource, "MinimizeToSystemTray", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialCheckBoxMinimizeTray.Depth = 0;
+            this.materialCheckBoxMinimizeTray.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxMinimizeTray.Location = new System.Drawing.Point(347, 15);
+            this.materialCheckBoxMinimizeTray.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxMinimizeTray.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxMinimizeTray.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxMinimizeTray.Name = "materialCheckBoxMinimizeTray";
+            this.materialCheckBoxMinimizeTray.Ripple = true;
+            this.materialCheckBoxMinimizeTray.Size = new System.Drawing.Size(177, 30);
+            this.materialCheckBoxMinimizeTray.TabIndex = 8;
+            this.materialCheckBoxMinimizeTray.Text = "Minimize to system tray";
+            this.materialCheckBoxMinimizeTray.UseVisualStyleBackColor = true;
+            // 
+            // materialCheckBoxSystemTray
+            // 
+            this.materialCheckBoxSystemTray.AutoSize = true;
+            this.materialCheckBoxSystemTray.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.settingsBindingSource, "CloseToSystemTray", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialCheckBoxSystemTray.Depth = 0;
+            this.materialCheckBoxSystemTray.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxSystemTray.Location = new System.Drawing.Point(177, 15);
+            this.materialCheckBoxSystemTray.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxSystemTray.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxSystemTray.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxSystemTray.Name = "materialCheckBoxSystemTray";
+            this.materialCheckBoxSystemTray.Ripple = true;
+            this.materialCheckBoxSystemTray.Size = new System.Drawing.Size(156, 30);
+            this.materialCheckBoxSystemTray.TabIndex = 7;
+            this.materialCheckBoxSystemTray.Text = "Close to system tray";
+            this.materialCheckBoxSystemTray.UseVisualStyleBackColor = true;
+            // 
+            // labelThanks
+            // 
+            this.labelThanks.AutoSize = true;
+            this.labelThanks.Location = new System.Drawing.Point(11, 110);
+            this.labelThanks.Name = "labelThanks";
+            this.labelThanks.Size = new System.Drawing.Size(255, 13);
+            this.labelThanks.TabIndex = 6;
+            this.labelThanks.Text = "Thanks to Nick Thissen for the iRacingSDKWrapper";
+            // 
+            // labelInfoTitle
+            // 
+            this.labelInfoTitle.AutoSize = true;
+            this.labelInfoTitle.Location = new System.Drawing.Point(8, 54);
+            this.labelInfoTitle.Name = "labelInfoTitle";
+            this.labelInfoTitle.Size = new System.Drawing.Size(59, 13);
+            this.labelInfoTitle.TabIndex = 5;
+            this.labelInfoTitle.Text = "Information";
+            // 
+            // linkLabelMembersite
+            // 
+            this.linkLabelMembersite.AutoSize = true;
+            this.linkLabelMembersite.Location = new System.Drawing.Point(196, 89);
+            this.linkLabelMembersite.Name = "linkLabelMembersite";
+            this.linkLabelMembersite.Size = new System.Drawing.Size(82, 13);
+            this.linkLabelMembersite.TabIndex = 3;
+            this.linkLabelMembersite.TabStop = true;
+            this.linkLabelMembersite.Text = "Yannic Schnetz";
+            this.linkLabelMembersite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMembersite_LinkClicked);
+            // 
+            // materialLabelInfo1
+            // 
+            this.materialLabelInfo1.AutoSize = true;
+            this.materialLabelInfo1.Depth = 0;
+            this.materialLabelInfo1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelInfo1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabelInfo1.Location = new System.Drawing.Point(10, 89);
+            this.materialLabelInfo1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabelInfo1.Name = "materialLabelInfo1";
+            this.materialLabelInfo1.Size = new System.Drawing.Size(189, 19);
+            this.materialLabelInfo1.TabIndex = 2;
+            this.materialLabelInfo1.Text = "iRacingManager created by";
+            // 
+            // materialCheckBoxStartWithWindows
+            // 
+            this.materialCheckBoxStartWithWindows.AutoSize = true;
+            this.materialCheckBoxStartWithWindows.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.settingsBindingSource, "StartWithWindows", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialCheckBoxStartWithWindows.Depth = 0;
+            this.materialCheckBoxStartWithWindows.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxStartWithWindows.Location = new System.Drawing.Point(14, 15);
+            this.materialCheckBoxStartWithWindows.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxStartWithWindows.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxStartWithWindows.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxStartWithWindows.Name = "materialCheckBoxStartWithWindows";
+            this.materialCheckBoxStartWithWindows.Ripple = true;
+            this.materialCheckBoxStartWithWindows.Size = new System.Drawing.Size(147, 30);
+            this.materialCheckBoxStartWithWindows.TabIndex = 0;
+            this.materialCheckBoxStartWithWindows.Text = "Start with windows";
+            this.materialCheckBoxStartWithWindows.UseVisualStyleBackColor = true;
+            this.materialCheckBoxStartWithWindows.CheckStateChanged += new System.EventHandler(this.materialCheckBoxStartWithWindows_CheckStateChanged);
+            // 
             // materialTabSelector1
             // 
             this.materialTabSelector1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -298,7 +304,19 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.contextMenuStripTray.Name = "contextMenuStripTray";
-            this.contextMenuStripTray.Size = new System.Drawing.Size(181, 76);
+            this.contextMenuStripTray.Size = new System.Drawing.Size(104, 54);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
             // 
             // exitToolStripMenuItem
             // 
@@ -307,21 +325,48 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // settingsBindingSource
+            // materialFlatButtonCheckUpdates
             // 
-            this.settingsBindingSource.DataSource = typeof(iRacingManager.Model.Settings.Settings);
+            this.materialFlatButtonCheckUpdates.AutoSize = true;
+            this.materialFlatButtonCheckUpdates.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButtonCheckUpdates.Depth = 0;
+            this.materialFlatButtonCheckUpdates.Icon = null;
+            this.materialFlatButtonCheckUpdates.Location = new System.Drawing.Point(14, 129);
+            this.materialFlatButtonCheckUpdates.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButtonCheckUpdates.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButtonCheckUpdates.Name = "materialFlatButtonCheckUpdates";
+            this.materialFlatButtonCheckUpdates.Primary = false;
+            this.materialFlatButtonCheckUpdates.Size = new System.Drawing.Size(158, 36);
+            this.materialFlatButtonCheckUpdates.TabIndex = 9;
+            this.materialFlatButtonCheckUpdates.Text = "Check for updates";
+            this.materialFlatButtonCheckUpdates.UseVisualStyleBackColor = true;
+            this.materialFlatButtonCheckUpdates.Click += new System.EventHandler(this.materialFlatButtonCheckUpdates_Click);
             // 
-            // openToolStripMenuItem
+            // materialLabelCurrentVersion
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.materialLabelCurrentVersion.AutoSize = true;
+            this.materialLabelCurrentVersion.Depth = 0;
+            this.materialLabelCurrentVersion.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelCurrentVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabelCurrentVersion.Location = new System.Drawing.Point(10, 171);
+            this.materialLabelCurrentVersion.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabelCurrentVersion.Name = "materialLabelCurrentVersion";
+            this.materialLabelCurrentVersion.Size = new System.Drawing.Size(115, 19);
+            this.materialLabelCurrentVersion.TabIndex = 10;
+            this.materialLabelCurrentVersion.Text = "Current version:";
             // 
-            // toolStripSeparator1
+            // materialLabelCurrentVersionValue
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.materialLabelCurrentVersionValue.AutoSize = true;
+            this.materialLabelCurrentVersionValue.Depth = 0;
+            this.materialLabelCurrentVersionValue.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelCurrentVersionValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabelCurrentVersionValue.Location = new System.Drawing.Point(131, 171);
+            this.materialLabelCurrentVersionValue.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabelCurrentVersionValue.Name = "materialLabelCurrentVersionValue";
+            this.materialLabelCurrentVersionValue.Size = new System.Drawing.Size(41, 19);
+            this.materialLabelCurrentVersionValue.TabIndex = 11;
+            this.materialLabelCurrentVersionValue.Text = "0.0.0";
             // 
             // ManagerForm
             // 
@@ -341,14 +386,14 @@
             this.Load += new System.EventHandler(this.ManagerForm_Load);
             this.Resize += new System.EventHandler(this.ManagerForm_Resize);
             this.materialTabControlMain.ResumeLayout(false);
-            this.tabPageSettings.ResumeLayout(false);
-            this.tabPageSettings.PerformLayout();
             this.tabPageMain.ResumeLayout(false);
             this.panelActions.ResumeLayout(false);
             this.panelActions.PerformLayout();
+            this.tabPageSettings.ResumeLayout(false);
+            this.tabPageSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.contextMenuStripTray.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.settingsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -378,6 +423,9 @@
         private System.Windows.Forms.BindingSource settingsBindingSource;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButtonCheckUpdates;
+        private MaterialSkin.Controls.MaterialLabel materialLabelCurrentVersionValue;
+        private MaterialSkin.Controls.MaterialLabel materialLabelCurrentVersion;
     }
 }
 

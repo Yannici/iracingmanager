@@ -34,6 +34,11 @@ namespace iRacingManager.Model.Settings {
 
         #region Methods
 
+        internal string getSavePath()
+        {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "iRacingManager", Settings.FILENAME);
+        }
+
         /// <summary>
         /// Saves/Serializes the setting file (settings.xml).
         /// </summary>
@@ -41,7 +46,13 @@ namespace iRacingManager.Model.Settings {
         {
             try
             {
-                using (var inputWriter = new StreamWriter(Settings.FILENAME))
+                string savePath = this.getSavePath();
+                if (!Directory.Exists(Path.GetDirectoryName(savePath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(savePath));
+                }
+
+                using (var inputWriter = new StreamWriter(savePath))
                 {
                     var xmlSerializer = new XmlSerializer(typeof(Settings));
                     xmlSerializer.Serialize(inputWriter, this);
@@ -84,12 +95,13 @@ namespace iRacingManager.Model.Settings {
         {
             try
             {
-                if (!File.Exists(Settings.FILENAME))
+                var setting = new Settings();
+                if (!File.Exists(setting.getSavePath()))
                 {
-                    return new Settings();
+                    return setting;
                 }
 
-                using (var inputReader = new StreamReader(Settings.FILENAME))
+                using (var inputReader = new StreamReader(setting.getSavePath()))
                 {
                     var xmlDeserializer = new XmlSerializer(typeof(Settings));
                     var xmlReader = XmlReader.Create(inputReader);

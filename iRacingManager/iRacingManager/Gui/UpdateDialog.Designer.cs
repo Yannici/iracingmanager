@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateDialog));
             this.materialLabelNewUpdate = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabelCurrentLabel = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabelCurrentVersion = new MaterialSkin.Controls.MaterialLabel();
@@ -184,6 +185,7 @@
             this.Controls.Add(this.materialLabelCurrentVersion);
             this.Controls.Add(this.materialLabelCurrentLabel);
             this.Controls.Add(this.materialLabelNewUpdate);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UpdateDialog";

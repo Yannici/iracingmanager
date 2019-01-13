@@ -363,6 +363,8 @@ namespace iRacingManager
 
             try
                 {
+                this.materialLabelCurrentVersionValue.Text = Application.ProductVersion;
+
                 request = System.Net.WebRequest.Create(ManagerForm.URL + ManagerForm.UPDATE_CHECK_NAME);
                 response = await request.GetResponseAsync();
 
@@ -385,7 +387,7 @@ namespace iRacingManager
                     updateDialog.UpdateDownloadCompleted += (object sender, EventArgs e) =>
                     {
                         this._UpdateClosing = true;
-                        Process.Start(updateSetupName);
+                        Process.Start(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "iRacingManager", updateSetupName));
                         this.Close();
                     };
 
@@ -540,6 +542,11 @@ namespace iRacingManager
                 this.Hide();
                 this.notifyIconTray.Visible = true;
             }
+        }
+
+        private void materialFlatButtonCheckUpdates_Click(object sender, EventArgs e)
+        {
+            this.checkForUpdates();
         }
 
         #region Settings
