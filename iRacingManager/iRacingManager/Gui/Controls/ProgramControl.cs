@@ -191,14 +191,17 @@ namespace iRacingManager.Gui.Controls
             ProcessStartInfo psi = new ProcessStartInfo(System.IO.Path.Combine(this._Program.InstallLocation, this._Program.FileName));
             Process process = null;
 
-            if (this._Program.StartHidden)
-            {
-                psi.WindowStyle = ProcessWindowStyle.Hidden;
-                psi.CreateNoWindow = true;
-            }
-
             try
             {
+                if (this._Program.StartHidden)
+                {
+                    psi.WindowStyle = ProcessWindowStyle.Hidden;
+                    psi.CreateNoWindow = true;
+                }
+
+                psi.WorkingDirectory = this._Program.InstallLocation;
+                psi.Arguments = this._Program.Arguments;
+
                 process = Process.Start(psi);
             } catch(InvalidOperationException)
             {

@@ -170,6 +170,11 @@ namespace iRacingManager.Model
             get; set;
         } = string.Empty;
 
+        public string Arguments
+        {
+            get; set;
+        } = string.Empty;
+
         public bool StartHidden
         {
             get; set;

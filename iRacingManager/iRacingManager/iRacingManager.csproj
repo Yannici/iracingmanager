@@ -60,14 +60,6 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="iRacingSdkWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\iRacingSdkWrapper.dll</HintPath>
-    </Reference>
-    <Reference Include="iRSDKSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\iRSDKSharp.dll</HintPath>
-    </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.Updated.0.2.2\lib\MaterialSkin.dll</HintPath>
     </Reference>
@@ -226,6 +218,16 @@
     <Content Include="logo.jpg" />
     <Content Include="logo.png" />
     <Content Include="YamlDotNet.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\iRacingSdkWrapper\iRacingSdkWrapper\iRacingSdkWrapper.csproj">
+      <Project>{d6db568b-35b3-49eb-8cb3-e4e5f1424247}</Project>
+      <Name>iRacingSdkWrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iRacingSdkWrapper\irsdkSharp\iRSDKSharp.csproj">
+      <Project>{72631b85-eb9a-473e-9b4c-65b355a9000d}</Project>
+      <Name>iRSDKSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

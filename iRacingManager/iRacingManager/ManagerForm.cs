@@ -61,8 +61,6 @@ namespace iRacingManager
             this._iRacingSdkWrapper.Connected += iRacingConnected;
             this._iRacingSdkWrapper.Disconnected += iRacingDisconnected;
 
-            this._iRacingSdkWrapper.Start();
-
             this.labelInfoTitle.Font = new Font("Roboto Medium", 18);
             this.linkLabelMembersite.Font = new Font("Roboto Medium", 11);
             this.labelThanks.Font = new Font("Roboto Medium", 9);
@@ -270,14 +268,20 @@ namespace iRacingManager
         /// </summary>
         private void checkStartStopButtons()
         {
-            this.materialFlatButtonStartAll.Visible = this.flowLayoutPanelPrograms.Controls.Cast<Control>().Any((c) =>
-                {
-                    return c.GetType() == typeof(ProgramControl) && ((ProgramControl)c).State == Model.Program.ProcessState.STOPPED;
-                });
-            this.materialFlatButtonStopAll.Visible = this.flowLayoutPanelPrograms.Controls.Cast<Control>().Any((c) =>
+            var startVisible = this.flowLayoutPanelPrograms.Controls.Cast<Control>().Any((c) =>
+            {
+                return c.GetType() == typeof(ProgramControl) && ((ProgramControl)c).State == Model.Program.ProcessState.STOPPED;
+            });
+            var stopVisible = this.flowLayoutPanelPrograms.Controls.Cast<Control>().Any((c) =>
             {
                 return c.GetType() == typeof(ProgramControl) && ((ProgramControl)c).State == Model.Program.ProcessState.RUNNING;
             });
+
+            this.materialFlatButtonStartAll.Visible = startVisible;
+            this.startAllToolStripMenuItem.Visible = startVisible;
+
+            this.materialFlatButtonStopAll.Visible = stopVisible;
+            this.stopAllToolStripMenuItem.Visible = stopVisible;
         }
 
         /// <summary>
@@ -413,34 +417,29 @@ namespace iRacingManager
             }
         }
 
-        private bool checkAlreadyRunning()
+        protected override void WndProc(ref Message m)
         {
-            Process[] runningProcesses = Process.GetProcessesByName("iRacingManager");
-            if (runningProcesses.Any())
+            if (m.Msg == Program.WM_SHOWIRMNG)
             {
-                foreach (Process runningProcess in runningProcesses)
+                if (this.notifyIconTray.Visible)
                 {
-                    if (runningProcess.Id != Process.GetCurrentProcess().Id)
-                    {
-                        // Get a handle to the application.
-                        IntPtr handle = runningProcess.MainWindowHandle;
-
-                        // Verify the application is a running process.
-                        if (handle == IntPtr.Zero)
-                        {
-                            continue;
-                        }
-
-                        // Make the application the foreground application
-                        SetForegroundWindow(handle);
-
-                        Process.GetCurrentProcess().Kill();
-                        return true;
-                    }
+                    this.openFromTray();
                 }
+
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    WindowState = FormWindowState.Normal;
+                }
+
+                // get our current "TopMost" value (ours will always be false though)
+                bool top = TopMost;
+                // make our form jump to the top of everything
+                TopMost = true;
+                // set it back to whatever it was
+                TopMost = top;
             }
 
-            return false;
+            base.WndProc(ref m);
         }
 
         #endregion
@@ -451,11 +450,6 @@ namespace iRacingManager
         {
             try
             {
-                if (this.checkAlreadyRunning())
-                {
-                    return;
-                }
-
                 this.initializeInstalledPrograms();
                 this.initCustomMaterialDesignFont();
                 this._Settings = Model.Settings.Settings.LoadSettings();
@@ -470,6 +464,8 @@ namespace iRacingManager
                 this.initializeProgramControls();
                 this.addAddControl();
                 this._Settings.Save();
+
+                this._iRacingSdkWrapper.Start();
 
                 this.checkForUpdates(false);
                 this.timerCheckProcesses.Start();
@@ -510,6 +506,16 @@ namespace iRacingManager
         }
 
         private void materialFlatButtonStopAll_Click(object sender, EventArgs e)
+        {
+            this.stopAll();
+        }
+
+        private void startAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.startAll();
+        }
+
+        private void stopAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.stopAll();
         }

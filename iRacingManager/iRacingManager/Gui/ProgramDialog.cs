@@ -147,6 +147,16 @@ namespace iRacingManager.Gui
             }
         }
 
+        private void materialFlatButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Are you sure to delete this program from the program list?", "Are you sure?",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                iRacingManager.Program.Logger.Info($"Program {this._Program.Name} removed.");
+                this.DialogResult = DialogResult.Abort;
+            }
+        }
+
         private void materialSingleLineTextFieldPath_Validated(object sender, EventArgs e)
         {
             this.validatePath();
@@ -179,14 +189,5 @@ namespace iRacingManager.Gui
 
         #endregion
 
-        private void materialFlatButtonDelete_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show(this, "Are you sure to delete this program from the program list?", "Are you sure?", 
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                iRacingManager.Program.Logger.Info($"Program {this._Program.Name} removed.");
-                this.DialogResult = DialogResult.Abort;
-            }
-        }
     }
 }
