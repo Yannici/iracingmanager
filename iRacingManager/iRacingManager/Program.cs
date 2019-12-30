@@ -42,6 +42,8 @@ namespace iRacingManager
             {
                 try
                 {
+                    bool minimized = false;
+
                     Program.Logger = LogManager.GetLogger("iRacingManager");
                     Program.Logger.Info("Application started.");
 
@@ -49,9 +51,11 @@ namespace iRacingManager
                     Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
                     AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
+                    minimized = Environment.GetCommandLineArgs().Contains("/min");
+ 
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new ManagerForm());
+                    Application.Run(new ManagerForm(minimized));
                 } finally
                 {
                     Program._Mutex.ReleaseMutex();

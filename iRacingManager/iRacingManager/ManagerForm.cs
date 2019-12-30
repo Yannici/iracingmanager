@@ -44,7 +44,7 @@ namespace iRacingManager
 
         #region Construction
 
-        public ManagerForm()
+        public ManagerForm(bool StartMinimized)
         {
             InitializeComponent();
 
@@ -64,6 +64,13 @@ namespace iRacingManager
             this.labelInfoTitle.Font = new Font("Roboto Medium", 18);
             this.linkLabelMembersite.Font = new Font("Roboto Medium", 11);
             this.labelThanks.Font = new Font("Roboto Medium", 9);
+
+            this._Settings = Model.Settings.Settings.LoadSettings();
+
+            if (StartMinimized)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
         }
 
         #endregion
@@ -450,9 +457,14 @@ namespace iRacingManager
         {
             try
             {
+                if (this.WindowState == FormWindowState.Minimized && this._Settings != null && this._Settings.MinimizeToSystemTray)
+                {
+                    this.Hide();
+                    this.notifyIconTray.Visible = true;
+                }
+
                 this.initializeInstalledPrograms();
                 this.initCustomMaterialDesignFont();
-                this._Settings = Model.Settings.Settings.LoadSettings();
                 this.settingsBindingSource.DataSource = this._Settings;
 
                 if (this._Settings.IsNew)

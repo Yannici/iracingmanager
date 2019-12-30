@@ -70,18 +70,20 @@ namespace iRacingManager.Model.Settings {
         {
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
             {
+                if (key.GetValue("iRacingManager") != null)
+                {
+                    key.DeleteValue("iRacingManager");
+                }
+
                 if (this.StartWithWindows)
                 {
-                    if (key.GetValue("iRacingManager") == null)
+
+                    if (this.StartWithWindowsMinimized)
+                    {
+                        key.SetValue("iRacingManager", "\"" + System.Windows.Forms.Application.ExecutablePath + "\" /min");
+                    } else
                     {
                         key.SetValue("iRacingManager", "\"" + System.Windows.Forms.Application.ExecutablePath + "\"");
-                    }
-                }
-                else
-                {
-                    if (key.GetValue("iRacingManager") != null)
-                    {
-                        key.DeleteValue("iRacingManager");
                     }
                 }
             }
@@ -143,6 +145,14 @@ namespace iRacingManager.Model.Settings {
         /// Setting if iRacingManager should start with windows.
         /// </summary>
         public bool StartWithWindows
+        {
+            get; set;
+        } = false;
+
+        /// <summary>
+        /// Setting if iRacingManager should start with windows minimized.
+        /// </summary>
+        public bool StartWithWindowsMinimized
         {
             get; set;
         } = false;

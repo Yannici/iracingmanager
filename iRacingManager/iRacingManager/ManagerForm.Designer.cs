@@ -37,11 +37,12 @@
             this.materialFlatButtonStartAll = new MaterialSkin.Controls.MaterialFlatButton();
             this.flowLayoutPanelPrograms = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.materialCheckBoxMinimizedWindowsStart = new MaterialSkin.Controls.MaterialCheckBox();
+            this.settingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialLabelCurrentVersionValue = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabelCurrentVersion = new MaterialSkin.Controls.MaterialLabel();
             this.materialFlatButtonCheckUpdates = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialCheckBoxMinimizeTray = new MaterialSkin.Controls.MaterialCheckBox();
-            this.settingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialCheckBoxSystemTray = new MaterialSkin.Controls.MaterialCheckBox();
             this.labelThanks = new System.Windows.Forms.Label();
             this.labelInfoTitle = new System.Windows.Forms.Label();
@@ -55,10 +56,10 @@
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialTabControlMain.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             this.panelActions.SuspendLayout();
@@ -151,6 +152,7 @@
             // 
             // tabPageSettings
             // 
+            this.tabPageSettings.Controls.Add(this.materialCheckBoxMinimizedWindowsStart);
             this.tabPageSettings.Controls.Add(this.materialLabelCurrentVersionValue);
             this.tabPageSettings.Controls.Add(this.materialLabelCurrentVersion);
             this.tabPageSettings.Controls.Add(this.materialFlatButtonCheckUpdates);
@@ -169,13 +171,32 @@
             this.tabPageSettings.Text = "Settings & Info";
             this.tabPageSettings.UseVisualStyleBackColor = true;
             // 
+            // materialCheckBoxMinimizedWindowsStart
+            // 
+            this.materialCheckBoxMinimizedWindowsStart.AutoSize = true;
+            this.materialCheckBoxMinimizedWindowsStart.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.settingsBindingSource, "StartWithWindowsMinimized", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialCheckBoxMinimizedWindowsStart.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.settingsBindingSource, "StartWithWindows", true));
+            this.materialCheckBoxMinimizedWindowsStart.Depth = 0;
+            this.materialCheckBoxMinimizedWindowsStart.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxMinimizedWindowsStart.Location = new System.Drawing.Point(29, 45);
+            this.materialCheckBoxMinimizedWindowsStart.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxMinimizedWindowsStart.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxMinimizedWindowsStart.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxMinimizedWindowsStart.Name = "materialCheckBoxMinimizedWindowsStart";
+            this.materialCheckBoxMinimizedWindowsStart.Ripple = true;
+            this.materialCheckBoxMinimizedWindowsStart.Size = new System.Drawing.Size(94, 30);
+            this.materialCheckBoxMinimizedWindowsStart.TabIndex = 12;
+            this.materialCheckBoxMinimizedWindowsStart.Text = "minimized";
+            this.materialCheckBoxMinimizedWindowsStart.UseVisualStyleBackColor = true;
+            this.materialCheckBoxMinimizedWindowsStart.CheckStateChanged += new System.EventHandler(this.materialCheckBoxStartWithWindows_CheckStateChanged);
+            // 
             // materialLabelCurrentVersionValue
             // 
             this.materialLabelCurrentVersionValue.AutoSize = true;
             this.materialLabelCurrentVersionValue.Depth = 0;
             this.materialLabelCurrentVersionValue.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabelCurrentVersionValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabelCurrentVersionValue.Location = new System.Drawing.Point(131, 171);
+            this.materialLabelCurrentVersionValue.Location = new System.Drawing.Point(129, 217);
             this.materialLabelCurrentVersionValue.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelCurrentVersionValue.Name = "materialLabelCurrentVersionValue";
             this.materialLabelCurrentVersionValue.Size = new System.Drawing.Size(41, 19);
@@ -188,7 +209,7 @@
             this.materialLabelCurrentVersion.Depth = 0;
             this.materialLabelCurrentVersion.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabelCurrentVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabelCurrentVersion.Location = new System.Drawing.Point(10, 171);
+            this.materialLabelCurrentVersion.Location = new System.Drawing.Point(8, 217);
             this.materialLabelCurrentVersion.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelCurrentVersion.Name = "materialLabelCurrentVersion";
             this.materialLabelCurrentVersion.Size = new System.Drawing.Size(115, 19);
@@ -201,7 +222,7 @@
             this.materialFlatButtonCheckUpdates.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButtonCheckUpdates.Depth = 0;
             this.materialFlatButtonCheckUpdates.Icon = null;
-            this.materialFlatButtonCheckUpdates.Location = new System.Drawing.Point(14, 129);
+            this.materialFlatButtonCheckUpdates.Location = new System.Drawing.Point(12, 175);
             this.materialFlatButtonCheckUpdates.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButtonCheckUpdates.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButtonCheckUpdates.Name = "materialFlatButtonCheckUpdates";
@@ -249,7 +270,7 @@
             // labelThanks
             // 
             this.labelThanks.AutoSize = true;
-            this.labelThanks.Location = new System.Drawing.Point(11, 110);
+            this.labelThanks.Location = new System.Drawing.Point(9, 156);
             this.labelThanks.Name = "labelThanks";
             this.labelThanks.Size = new System.Drawing.Size(255, 13);
             this.labelThanks.TabIndex = 6;
@@ -258,7 +279,7 @@
             // labelInfoTitle
             // 
             this.labelInfoTitle.AutoSize = true;
-            this.labelInfoTitle.Location = new System.Drawing.Point(8, 54);
+            this.labelInfoTitle.Location = new System.Drawing.Point(6, 100);
             this.labelInfoTitle.Name = "labelInfoTitle";
             this.labelInfoTitle.Size = new System.Drawing.Size(59, 13);
             this.labelInfoTitle.TabIndex = 5;
@@ -267,7 +288,7 @@
             // linkLabelMembersite
             // 
             this.linkLabelMembersite.AutoSize = true;
-            this.linkLabelMembersite.Location = new System.Drawing.Point(196, 89);
+            this.linkLabelMembersite.Location = new System.Drawing.Point(194, 135);
             this.linkLabelMembersite.Name = "linkLabelMembersite";
             this.linkLabelMembersite.Size = new System.Drawing.Size(82, 13);
             this.linkLabelMembersite.TabIndex = 3;
@@ -281,7 +302,7 @@
             this.materialLabelInfo1.Depth = 0;
             this.materialLabelInfo1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabelInfo1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabelInfo1.Location = new System.Drawing.Point(10, 89);
+            this.materialLabelInfo1.Location = new System.Drawing.Point(8, 135);
             this.materialLabelInfo1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelInfo1.Name = "materialLabelInfo1";
             this.materialLabelInfo1.Size = new System.Drawing.Size(189, 19);
@@ -353,7 +374,7 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.contextMenuStripTray.Name = "contextMenuStripTray";
-            this.contextMenuStripTray.Size = new System.Drawing.Size(181, 126);
+            this.contextMenuStripTray.Size = new System.Drawing.Size(114, 104);
             // 
             // openToolStripMenuItem
             // 
@@ -367,18 +388,11 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // startAllToolStripMenuItem
             // 
             this.startAllToolStripMenuItem.Image = global::iRacingManager.Properties.Resources.start;
             this.startAllToolStripMenuItem.Name = "startAllToolStripMenuItem";
-            this.startAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startAllToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.startAllToolStripMenuItem.Text = "Start all";
             this.startAllToolStripMenuItem.Click += new System.EventHandler(this.startAllToolStripMenuItem_Click);
             // 
@@ -386,7 +400,7 @@
             // 
             this.stopAllToolStripMenuItem.Image = global::iRacingManager.Properties.Resources.stop;
             this.stopAllToolStripMenuItem.Name = "stopAllToolStripMenuItem";
-            this.stopAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stopAllToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.stopAllToolStripMenuItem.Text = "Stop all";
             this.stopAllToolStripMenuItem.Click += new System.EventHandler(this.stopAllToolStripMenuItem_Click);
             // 
@@ -394,6 +408,13 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(110, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // ManagerForm
             // 
@@ -456,6 +477,7 @@
         private System.Windows.Forms.ToolStripMenuItem startAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBoxMinimizedWindowsStart;
     }
 }
 
