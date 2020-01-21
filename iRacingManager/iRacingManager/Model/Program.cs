@@ -145,7 +145,12 @@ namespace iRacingManager.Model
             get; set;
         } = false;
 
-        public bool StartStopWithIRacing
+        public bool StartWithIRacing
+        {
+            get; set;
+        } = true;
+
+        public bool StopWithIRacing
         {
             get; set;
         } = true;

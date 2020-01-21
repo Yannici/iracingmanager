@@ -103,6 +103,36 @@ namespace iRacingManager.Model.Settings {
                     return setting;
                 }
 
+                // Check migration
+                var xmlDoc = new XmlDocument();
+                xmlDoc.Load(setting.getSavePath());
+
+                var versionNode = xmlDoc.SelectSingleNode("//SettingsVersion");
+                Version version;
+
+                if (versionNode == null)
+                {
+                    version = new Version("1.0.0");
+                } else
+                {
+                    version = new Version(versionNode.InnerText);
+                }
+
+                // Get all migration methods
+                var migrationMethods = typeof(Migration).GetMethods(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+                var migrationRan = false;
+                foreach (var method in migrationMethods)
+                {
+                    var methodAttr = method.GetCustomAttributes(typeof(MigrationAttribute), false);
+                    if (methodAttr.Length > 0 && version <= ((MigrationAttribute)methodAttr[0]).MigrateVersion)
+                    {
+                        method.Invoke(null, new object[] { xmlDoc });
+                        migrationRan = true;
+                    }
+                }
+                
+                if (migrationRan) xmlDoc.Save(setting.getSavePath());
+
                 using (var inputReader = new StreamReader(setting.getSavePath()))
                 {
                     var xmlDeserializer = new XmlSerializer(typeof(Settings));
@@ -172,6 +202,21 @@ namespace iRacingManager.Model.Settings {
         {
             get; set;
         } = false;
+
+        /// <summary>
+        /// Version of the settings for migration
+        /// </summary>
+        public string SettingsVersion
+        {
+            get
+            {
+                return "1.0.1";
+            }
+            set
+            {
+                // Nothin' to do
+            }
+        }
 
         #endregion
 

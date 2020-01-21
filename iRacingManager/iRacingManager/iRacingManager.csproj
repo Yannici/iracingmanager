@@ -120,6 +120,8 @@
     </Compile>
     <Compile Include="Model\Program.cs" />
     <Compile Include="Model\ProgramAddedEventArgs.cs" />
+    <Compile Include="Model\Settings\Migration.cs" />
+    <Compile Include="Model\Settings\MigrationAttribute.cs" />
     <Compile Include="Model\Settings\Settings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

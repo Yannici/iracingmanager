@@ -337,7 +337,7 @@ namespace iRacingManager
         {
             foreach(ProgramControl control in this.ProgramControls)
             {
-                if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.STOPPED)
+                if (control.Program.StartWithIRacing && control.State == Model.Program.ProcessState.STOPPED)
                 {
                     control.start();
                 }
@@ -351,7 +351,7 @@ namespace iRacingManager
         {
             foreach (ProgramControl control in this.ProgramControls)
             {
-                if (control.Program.StartStopWithIRacing && control.State == Model.Program.ProcessState.RUNNING)
+                if (control.Program.StopWithIRacing && control.State == Model.Program.ProcessState.RUNNING)
                 {
                     control.stop();
                 }
