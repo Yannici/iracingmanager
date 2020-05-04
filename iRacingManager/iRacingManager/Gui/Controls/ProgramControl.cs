@@ -92,6 +92,12 @@ namespace iRacingManager.Gui.Controls
 
                 this._StartStopAction = true;
                 this.buttonStart.Enabled = false;
+
+                if (this.Program.DelayStart)
+                {
+                    await Task.Delay(this.Program.DelayStartSeconds * 1000);
+                }
+
                 if (await Task.Run(() => this.startAsync()))
                 {
                     this.setRunning();

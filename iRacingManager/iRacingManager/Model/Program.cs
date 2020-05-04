@@ -185,6 +185,16 @@ namespace iRacingManager.Model
             get; set;
         } = false;
 
+        public bool DelayStart
+        {
+            get; set;
+        } = false;
+
+        public int DelayStartSeconds
+        {
+            get; set;
+        } = 0;
+
         #endregion
 
     }

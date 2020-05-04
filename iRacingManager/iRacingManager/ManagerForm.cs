@@ -192,6 +192,8 @@ namespace iRacingManager
                 {
                     this.createProgramControl(program);
                 }
+
+                this.flowLayoutPanelPrograms.Refresh();
             } catch(Exception ex)
             {
                 throw new Exception("Error on initializing program controls", ex);
@@ -209,7 +211,7 @@ namespace iRacingManager
                 ProgramControl control = new ProgramControl(program, this._FontCollection);
                 program.Control = control;
                 this.flowLayoutPanelPrograms.Controls.Add(control);
-                this.flowLayoutPanelPrograms.Controls.SetChildIndex(control, this.flowLayoutPanelPrograms.Controls.Count - 2);
+                this.flowLayoutPanelPrograms.Controls.SetChildIndex(control, this.flowLayoutPanelPrograms.Controls.Count - 1);
             } catch (Exception ex)
             {
                 throw new Exception($"Error on initializing program control for '{program.Name}'", ex);
@@ -534,7 +536,7 @@ namespace iRacingManager
 
         private void ManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this._UpdateClosing)
+            if (this._UpdateClosing || e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.ApplicationExitCall)
             {
                 this.ProgramControls.ForEach((c) =>
                 {

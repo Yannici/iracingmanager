@@ -15,18 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_01DD781AD0BF420843ACA85E48167338"
-        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_01DD781AD0BF420843ACA85E48167338"
-        "OwnerKey" = "8:_35AAC4C2A448E61C154F0C3D1042EC8B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0E125A1FA6F638AC0AEEC8DE1C29172A"
         "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
@@ -34,18 +22,24 @@
         "Entry"
         {
         "MsmKey" = "8:_0E125A1FA6F638AC0AEEC8DE1C29172A"
-        "OwnerKey" = "8:_5E1996CFBADF335B9ECDD4D3ED907C42"
+        "OwnerKey" = "8:_590E245E41AE65A7DB11DDB048FE94C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_35AAC4C2A448E61C154F0C3D1042EC8B"
+        "MsmKey" = "8:_1B50AD86DCEF86EE4CE5EE52D440ED4F"
         "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5E1996CFBADF335B9ECDD4D3ED907C42"
+        "MsmKey" = "8:_1B50AD86DCEF86EE4CE5EE52D440ED4F"
+        "OwnerKey" = "8:_D71EA899EA147FD421E30EE74A3BBCC5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_590E245E41AE65A7DB11DDB048FE94C9"
         "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -57,25 +51,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_91477634491CCEB190C85B3633A66D5F"
-        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CEB17CF89FC841A59F3C698519F090A5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_DA6F9F52EB1C46129B19D06C47A0CFA3"
-        "OwnerKey" = "8:_35AAC4C2A448E61C154F0C3D1042EC8B"
+        "MsmKey" = "8:_D3E76D82256837B61DD27A750BD5B91B"
+        "OwnerKey" = "8:_D71EA899EA147FD421E30EE74A3BBCC5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_DA6F9F52EB1C46129B19D06C47A0CFA3"
+        "MsmKey" = "8:_D3E76D82256837B61DD27A750BD5B91B"
+        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D71EA899EA147FD421E30EE74A3BBCC5"
         "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -93,6 +87,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F9BFEFCF3C326FF0B9FD2BC7DCE28C01"
+        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
@@ -100,31 +100,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5E1996CFBADF335B9ECDD4D3ED907C42"
+        "OwnerKey" = "8:_590E245E41AE65A7DB11DDB048FE94C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_91477634491CCEB190C85B3633A66D5F"
+        "OwnerKey" = "8:_F9BFEFCF3C326FF0B9FD2BC7DCE28C01"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_35AAC4C2A448E61C154F0C3D1042EC8B"
+        "OwnerKey" = "8:_D71EA899EA147FD421E30EE74A3BBCC5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DA6F9F52EB1C46129B19D06C47A0CFA3"
+        "OwnerKey" = "8:_D3E76D82256837B61DD27A750BD5B91B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_01DD781AD0BF420843ACA85E48167338"
+        "OwnerKey" = "8:_1B50AD86DCEF86EE4CE5EE52D440ED4F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -234,37 +234,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_01DD781AD0BF420843ACA85E48167338"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:YamlDotNet, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_01DD781AD0BF420843ACA85E48167338"
-                    {
-                    "Name" = "8:YamlDotNet.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:YamlDotNet.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0E125A1FA6F638AC0AEEC8DE1C29172A"
             {
             "AssemblyRegister" = "3:1"
@@ -296,20 +265,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_35AAC4C2A448E61C154F0C3D1042EC8B"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1B50AD86DCEF86EE4CE5EE52D440ED4F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:iRacingSdkWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:YamlDotNet, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_35AAC4C2A448E61C154F0C3D1042EC8B"
+                    "_1B50AD86DCEF86EE4CE5EE52D440ED4F"
                     {
-                    "Name" = "8:iRacingSdkWrapper.dll"
+                    "Name" = "8:YamlDotNet.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:iRacingSdkWrapper.dll"
+            "SourcePath" = "8:YamlDotNet.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B863609B68734D3E8ED712380405675D"
@@ -327,14 +296,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5E1996CFBADF335B9ECDD4D3ED907C42"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_590E245E41AE65A7DB11DDB048FE94C9"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5E1996CFBADF335B9ECDD4D3ED907C42"
+                    "_590E245E41AE65A7DB11DDB048FE94C9"
                     {
                     "Name" = "8:NLog.dll"
                     "Attributes" = "3:512"
@@ -378,37 +347,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_91477634491CCEB190C85B3633A66D5F"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_91477634491CCEB190C85B3633A66D5F"
-                    {
-                    "Name" = "8:MaterialSkin.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MaterialSkin.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CEB17CF89FC841A59F3C698519F090A5"
             {
             "SourcePath" = "8:..\\iRacingManager\\icon.ico"
@@ -429,20 +367,51 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DA6F9F52EB1C46129B19D06C47A0CFA3"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D3E76D82256837B61DD27A750BD5B91B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:iRSDKSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_DA6F9F52EB1C46129B19D06C47A0CFA3"
+                    "_D3E76D82256837B61DD27A750BD5B91B"
                     {
                     "Name" = "8:iRSDKSharp.dll"
                     "Attributes" = "3:512"
                     }
                 }
             "SourcePath" = "8:iRSDKSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D71EA899EA147FD421E30EE74A3BBCC5"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:iRacingSdkWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D71EA899EA147FD421E30EE74A3BBCC5"
+                    {
+                    "Name" = "8:iRacingSdkWrapper.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:iRacingSdkWrapper.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B863609B68734D3E8ED712380405675D"
@@ -474,6 +443,37 @@
                     }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F9BFEFCF3C326FF0B9FD2BC7DCE28C01"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F9BFEFCF3C326FF0B9FD2BC7DCE28C01"
+                    {
+                    "Name" = "8:MaterialSkin.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MaterialSkin.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B863609B68734D3E8ED712380405675D"
@@ -547,15 +547,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:iRacingManager"
-        "ProductCode" = "8:{391C2736-EA11-4DD0-B8E0-D67C6F3C018B}"
-        "PackageCode" = "8:{0E861240-7343-4B96-9FDB-8837ACF7F9C5}"
+        "ProductCode" = "8:{2A8056C8-3D3A-489C-A668-316F3AFC668B}"
+        "PackageCode" = "8:{84F69871-B68F-4784-935A-A5F34F3B16B8}"
         "UpgradeCode" = "8:{6190A9A5-9E93-45CE-93CA-9840D69EFADE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.6"
+        "ProductVersion" = "8:1.1.8"
         "Manufacturer" = "8:Yannic Schnetz"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
