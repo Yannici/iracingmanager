@@ -211,7 +211,7 @@ namespace iRacingManager
                 ProgramControl control = new ProgramControl(program, this._FontCollection);
                 program.Control = control;
                 this.flowLayoutPanelPrograms.Controls.Add(control);
-                this.flowLayoutPanelPrograms.Controls.SetChildIndex(control, this.flowLayoutPanelPrograms.Controls.Count - 1);
+                this.flowLayoutPanelPrograms.Controls.SetChildIndex(control, this.flowLayoutPanelPrograms.Controls.Count - 2);
             } catch (Exception ex)
             {
                 throw new Exception($"Error on initializing program control for '{program.Name}'", ex);
