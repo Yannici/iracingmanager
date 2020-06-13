@@ -97,11 +97,11 @@ namespace iRacingManager.Gui
                 return;
             }
 
+            this._Program.InstallLocation = System.IO.Path.GetDirectoryName(this.materialSingleLineTextFieldPath.Text);
+            this._Program.FileName = System.IO.Path.GetFileName(this.materialSingleLineTextFieldPath.Text);
+
             if (!this._EditMode)
             {
-                this._Program.InstallLocation = System.IO.Path.GetDirectoryName(this.materialSingleLineTextFieldPath.Text);
-                this._Program.FileName = System.IO.Path.GetFileName(this.materialSingleLineTextFieldPath.Text);
-
                 if (string.IsNullOrEmpty(this._Program.Name))
                 {
                     this._Program.Name = System.IO.Path.GetFileNameWithoutExtension(this.materialSingleLineTextFieldPath.Text);

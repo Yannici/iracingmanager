@@ -477,6 +477,8 @@ namespace iRacingManager
                 this.initializePrograms();
                 this.initializeProgramControls();
                 this.addAddControl();
+                this.PerformLayout();
+
                 this._Settings.Save();
 
                 this._iRacingSdkWrapper.Start();

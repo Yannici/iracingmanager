@@ -208,6 +208,8 @@ namespace iRacingManager.Gui.Controls
                 psi.WorkingDirectory = this._Program.InstallLocation;
                 psi.Arguments = this._Program.Arguments;
 
+                this._Program.runSpecialLogic(ref psi);
+
                 process = Process.Start(psi);
             } catch(InvalidOperationException)
             {

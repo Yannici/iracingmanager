@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
 
 namespace iRacingManager.Model
 {
@@ -83,6 +86,28 @@ namespace iRacingManager.Model
                 }
 
                 return clonedImg;
+            }
+        }
+
+        internal void runSpecialLogic(ref ProcessStartInfo psi)
+        {
+            switch(this.FileName.ToLower())
+            {
+                case "kapps.exe":
+                    var fileInfo = new FileInfo(Path.Combine(this.InstallLocation, this.FileName));
+                    // The kapps launcher only has less than 1MB size
+                    if (fileInfo.Length < 1000000)
+                    {
+                        // Use the application in the subdirectory instead by getting the version number
+                        var version = FileVersionInfo.GetVersionInfo(fileInfo.FullName);
+                        var versionDir = Path.Combine(this.InstallLocation, "app-" + (version.FileVersion.EndsWith(".0") ? version.FileVersion.Substring(0, version.FileVersion.LastIndexOf('.') + 1) : version.FileVersion));
+
+                        if (Directory.Exists(versionDir)) {
+                            psi.FileName = Path.Combine(versionDir, this.FileName);
+                            psi.WorkingDirectory = versionDir;
+                        }
+                    }
+                    break;
             }
         }
 
