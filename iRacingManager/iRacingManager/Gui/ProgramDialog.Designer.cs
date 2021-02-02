@@ -34,7 +34,6 @@
             this.materialSingleLineTextFieldIconPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabelName = new MaterialSkin.Controls.MaterialLabel();
             this.materialSingleLineTextField2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialFlatButtonSelectIcon = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialSingleLineTextFieldPath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialFlatButtonSelectApp = new MaterialSkin.Controls.MaterialFlatButton();
@@ -56,21 +55,22 @@
             this.materialFlatButtonCancel = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialCheckBoxStartHidden = new MaterialSkin.Controls.MaterialCheckBox();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
+            this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // materialLabelIcon
             // 
             this.materialLabelIcon.AutoSize = true;
             this.materialLabelIcon.Depth = 0;
-            this.materialLabelIcon.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelIcon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelIcon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelIcon.Location = new System.Drawing.Point(56, 0);
             this.materialLabelIcon.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelIcon.Name = "materialLabelIcon";
-            this.materialLabelIcon.Size = new System.Drawing.Size(38, 19);
+            this.materialLabelIcon.Size = new System.Drawing.Size(36, 18);
             this.materialLabelIcon.TabIndex = 1;
             this.materialLabelIcon.Text = "Icon";
             // 
@@ -98,12 +98,12 @@
             // 
             this.materialLabelName.AutoSize = true;
             this.materialLabelName.Depth = 0;
-            this.materialLabelName.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelName.Location = new System.Drawing.Point(1, 53);
             this.materialLabelName.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelName.Name = "materialLabelName";
-            this.materialLabelName.Size = new System.Drawing.Size(49, 19);
+            this.materialLabelName.Size = new System.Drawing.Size(48, 18);
             this.materialLabelName.TabIndex = 3;
             this.materialLabelName.Text = "Name";
             // 
@@ -124,10 +124,6 @@
             this.materialSingleLineTextField2.TabIndex = 4;
             this.materialSingleLineTextField2.TabStop = false;
             this.materialSingleLineTextField2.UseSystemPasswordChar = false;
-            // 
-            // programBindingSource
-            // 
-            this.programBindingSource.DataSource = typeof(iRacingManager.Model.Program);
             // 
             // materialFlatButtonSelectIcon
             // 
@@ -217,19 +213,19 @@
             // 
             this.materialLabelDelayStopSeconds.AutoSize = true;
             this.materialLabelDelayStopSeconds.Depth = 0;
-            this.materialLabelDelayStopSeconds.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelDelayStopSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelDelayStopSeconds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelDelayStopSeconds.Location = new System.Drawing.Point(200, 251);
             this.materialLabelDelayStopSeconds.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelDelayStopSeconds.Name = "materialLabelDelayStopSeconds";
-            this.materialLabelDelayStopSeconds.Size = new System.Drawing.Size(76, 19);
+            this.materialLabelDelayStopSeconds.Size = new System.Drawing.Size(75, 18);
             this.materialLabelDelayStopSeconds.TabIndex = 22;
             this.materialLabelDelayStopSeconds.Text = "second(s)";
             // 
             // materialSingleLineTextFieldDelayStop
             // 
-            this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.programBindingSource, "DelayStop", true));
-            this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.programBindingSource, "DelayStopSeconds", true));
+            this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.programBindingSource, "DelayStopSeconds", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.programBindingSource, "DelayStop", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialSingleLineTextFieldDelayStop.Depth = 0;
             this.materialSingleLineTextFieldDelayStop.Hint = "";
             this.materialSingleLineTextFieldDelayStop.Location = new System.Drawing.Point(119, 247);
@@ -250,7 +246,7 @@
             this.materialCheckBoxDelayStop.AutoSize = true;
             this.materialCheckBoxDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "DelayStop", true));
             this.materialCheckBoxDelayStop.Depth = 0;
-            this.materialCheckBoxDelayStop.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxDelayStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.materialCheckBoxDelayStop.Location = new System.Drawing.Point(-3, 242);
             this.materialCheckBoxDelayStop.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxDelayStop.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -266,12 +262,12 @@
             // 
             this.materialLabelDelaySeconds.AutoSize = true;
             this.materialLabelDelaySeconds.Depth = 0;
-            this.materialLabelDelaySeconds.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelDelaySeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelDelaySeconds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelDelaySeconds.Location = new System.Drawing.Point(200, 221);
             this.materialLabelDelaySeconds.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelDelaySeconds.Name = "materialLabelDelaySeconds";
-            this.materialLabelDelaySeconds.Size = new System.Drawing.Size(76, 19);
+            this.materialLabelDelaySeconds.Size = new System.Drawing.Size(75, 18);
             this.materialLabelDelaySeconds.TabIndex = 19;
             this.materialLabelDelaySeconds.Text = "second(s)";
             // 
@@ -299,7 +295,7 @@
             this.materialCheckBoxDelayStart.AutoSize = true;
             this.materialCheckBoxDelayStart.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "DelayStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxDelayStart.Depth = 0;
-            this.materialCheckBoxDelayStart.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxDelayStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.materialCheckBoxDelayStart.Location = new System.Drawing.Point(-3, 212);
             this.materialCheckBoxDelayStart.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxDelayStart.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -315,12 +311,12 @@
             // 
             this.materialLabelWithiRacing.AutoSize = true;
             this.materialLabelWithiRacing.Depth = 0;
-            this.materialLabelWithiRacing.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelWithiRacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelWithiRacing.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelWithiRacing.Location = new System.Drawing.Point(180, 176);
             this.materialLabelWithiRacing.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelWithiRacing.Name = "materialLabelWithiRacing";
-            this.materialLabelWithiRacing.Size = new System.Drawing.Size(106, 19);
+            this.materialLabelWithiRacing.Size = new System.Drawing.Size(103, 18);
             this.materialLabelWithiRacing.TabIndex = 16;
             this.materialLabelWithiRacing.Text = "... with iRacing";
             // 
@@ -329,7 +325,7 @@
             this.materialCheckBoxStopWithiRacing.AutoSize = true;
             this.materialCheckBoxStopWithiRacing.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StopWithIRacing", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxStopWithiRacing.Depth = 0;
-            this.materialCheckBoxStopWithiRacing.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxStopWithiRacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.materialCheckBoxStopWithiRacing.Location = new System.Drawing.Point(113, 182);
             this.materialCheckBoxStopWithiRacing.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxStopWithiRacing.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -363,12 +359,12 @@
             // 
             this.materialLabelArguments.AutoSize = true;
             this.materialLabelArguments.Depth = 0;
-            this.materialLabelArguments.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabelArguments.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelArguments.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabelArguments.Location = new System.Drawing.Point(1, 101);
             this.materialLabelArguments.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelArguments.Name = "materialLabelArguments";
-            this.materialLabelArguments.Size = new System.Drawing.Size(82, 19);
+            this.materialLabelArguments.Size = new System.Drawing.Size(79, 18);
             this.materialLabelArguments.TabIndex = 13;
             this.materialLabelArguments.Text = "Arguments";
             // 
@@ -377,7 +373,7 @@
             this.materialCheckBoxStartWithiRacing.AutoSize = true;
             this.materialCheckBoxStartWithiRacing.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StartWithIRacing", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxStartWithiRacing.Depth = 0;
-            this.materialCheckBoxStartWithiRacing.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxStartWithiRacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.materialCheckBoxStartWithiRacing.Location = new System.Drawing.Point(113, 158);
             this.materialCheckBoxStartWithiRacing.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxStartWithiRacing.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -461,7 +457,7 @@
             this.materialCheckBoxStartHidden.AutoSize = true;
             this.materialCheckBoxStartHidden.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StartHidden", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxStartHidden.Depth = 0;
-            this.materialCheckBoxStartHidden.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxStartHidden.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.materialCheckBoxStartHidden.Location = new System.Drawing.Point(-3, 158);
             this.materialCheckBoxStartHidden.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxStartHidden.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -483,6 +479,10 @@
             this.pictureBoxIcon.TabIndex = 0;
             this.pictureBoxIcon.TabStop = false;
             // 
+            // programBindingSource
+            // 
+            this.programBindingSource.DataSource = typeof(iRacingManager.Model.Program);
+            // 
             // ProgramDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,10 +498,10 @@
             this.Name = "ProgramDialog";
             this.Text = "Add program";
             this.Load += new System.EventHandler(this.ProgramDialog_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).EndInit();
             this.panelDetails.ResumeLayout(false);
             this.panelDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
