@@ -263,7 +263,7 @@ namespace iRacingManager
 
                     if (((ProgramControl)control).State != Model.Program.ProcessState.STOPPED)
                     {
-                        ((ProgramControl)control).stop();
+                        ((ProgramControl)control).stop(true);
                     }
                 }
             } catch (Exception ex)
@@ -355,7 +355,7 @@ namespace iRacingManager
             {
                 if (control.Program.StopWithIRacing && control.State == Model.Program.ProcessState.RUNNING)
                 {
-                    control.stop();
+                    control.stop(false);
                 }
             }
         }

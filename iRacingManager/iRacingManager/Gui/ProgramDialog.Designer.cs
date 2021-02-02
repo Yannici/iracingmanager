@@ -53,6 +53,9 @@
             this.materialFlatButtonCancel = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialCheckBoxStartHidden = new MaterialSkin.Controls.MaterialCheckBox();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.materialCheckBoxDelayStop = new MaterialSkin.Controls.MaterialCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.programBindingSource)).BeginInit();
             this.panelDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
@@ -182,6 +185,9 @@
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.White;
+            this.panelDetails.Controls.Add(this.materialLabel1);
+            this.panelDetails.Controls.Add(this.materialSingleLineTextField1);
+            this.panelDetails.Controls.Add(this.materialCheckBoxDelayStop);
             this.panelDetails.Controls.Add(this.materialLabelDelaySeconds);
             this.panelDetails.Controls.Add(this.materialSingleLineTextFieldDelay);
             this.panelDetails.Controls.Add(this.materialCheckBoxDelayStart);
@@ -203,7 +209,7 @@
             this.panelDetails.Controls.Add(this.materialSingleLineTextField2);
             this.panelDetails.Location = new System.Drawing.Point(12, 107);
             this.panelDetails.Name = "panelDetails";
-            this.panelDetails.Size = new System.Drawing.Size(289, 290);
+            this.panelDetails.Size = new System.Drawing.Size(289, 322);
             this.panelDetails.TabIndex = 8;
             this.panelDetails.Visible = false;
             // 
@@ -340,7 +346,7 @@
             this.materialFlatButtonDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButtonDelete.Depth = 0;
             this.materialFlatButtonDelete.Icon = ((System.Drawing.Image)(resources.GetObject("materialFlatButtonDelete.Icon")));
-            this.materialFlatButtonDelete.Location = new System.Drawing.Point(188, 251);
+            this.materialFlatButtonDelete.Location = new System.Drawing.Point(188, 284);
             this.materialFlatButtonDelete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButtonDelete.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButtonDelete.Name = "materialFlatButtonDelete";
@@ -375,7 +381,7 @@
             this.materialRaisedButtonOK.Depth = 0;
             this.materialRaisedButtonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.materialRaisedButtonOK.Icon = null;
-            this.materialRaisedButtonOK.Location = new System.Drawing.Point(5, 251);
+            this.materialRaisedButtonOK.Location = new System.Drawing.Point(5, 284);
             this.materialRaisedButtonOK.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonOK.Name = "materialRaisedButtonOK";
             this.materialRaisedButtonOK.Primary = true;
@@ -391,7 +397,7 @@
             this.materialFlatButtonCancel.Depth = 0;
             this.materialFlatButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.materialFlatButtonCancel.Icon = null;
-            this.materialFlatButtonCancel.Location = new System.Drawing.Point(67, 251);
+            this.materialFlatButtonCancel.Location = new System.Drawing.Point(67, 284);
             this.materialFlatButtonCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButtonCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButtonCancel.Name = "materialFlatButtonCancel";
@@ -428,12 +434,61 @@
             this.pictureBoxIcon.TabIndex = 0;
             this.pictureBoxIcon.TabStop = false;
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(200, 251);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(76, 19);
+            this.materialLabel1.TabIndex = 22;
+            this.materialLabel1.Text = "second(s)";
+            // 
+            // materialSingleLineTextField1
+            // 
+            this.materialSingleLineTextField1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.programBindingSource, "DelayStartSeconds", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N0"));
+            this.materialSingleLineTextField1.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.programBindingSource, "DelayStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialSingleLineTextField1.Depth = 0;
+            this.materialSingleLineTextField1.Hint = "";
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(119, 247);
+            this.materialSingleLineTextField1.MaxLength = 32767;
+            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
+            this.materialSingleLineTextField1.PasswordChar = '\0';
+            this.materialSingleLineTextField1.SelectedText = "";
+            this.materialSingleLineTextField1.SelectionLength = 0;
+            this.materialSingleLineTextField1.SelectionStart = 0;
+            this.materialSingleLineTextField1.Size = new System.Drawing.Size(75, 23);
+            this.materialSingleLineTextField1.TabIndex = 21;
+            this.materialSingleLineTextField1.TabStop = false;
+            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
+            // 
+            // materialCheckBoxDelayStop
+            // 
+            this.materialCheckBoxDelayStop.AutoSize = true;
+            this.materialCheckBoxDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "DelayStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialCheckBoxDelayStop.Depth = 0;
+            this.materialCheckBoxDelayStop.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBoxDelayStop.Location = new System.Drawing.Point(-3, 242);
+            this.materialCheckBoxDelayStop.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxDelayStop.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxDelayStop.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxDelayStop.Name = "materialCheckBoxDelayStop";
+            this.materialCheckBoxDelayStop.Ripple = true;
+            this.materialCheckBoxDelayStop.Size = new System.Drawing.Size(96, 30);
+            this.materialCheckBoxDelayStop.TabIndex = 20;
+            this.materialCheckBoxDelayStop.Text = "Delay Stop";
+            this.materialCheckBoxDelayStop.UseVisualStyleBackColor = true;
+            // 
             // ProgramDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.materialFlatButtonCancel;
-            this.ClientSize = new System.Drawing.Size(313, 409);
+            this.ClientSize = new System.Drawing.Size(313, 442);
             this.Controls.Add(this.panelDetails);
             this.Controls.Add(this.materialFlatButtonSelectApp);
             this.Controls.Add(this.materialSingleLineTextFieldPath);
@@ -477,5 +532,8 @@
         private MaterialSkin.Controls.MaterialLabel materialLabelDelaySeconds;
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextFieldDelay;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBoxDelayStart;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBoxDelayStop;
     }
 }

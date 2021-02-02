@@ -54,14 +54,20 @@ namespace iRacingManager.Gui.Controls
         /// <summary>
         /// Stops the program and updates the control.
         /// </summary>
-        internal async void stop()
+        internal async void stop(bool instant)
         {
             try
             {
                 this._StartStopAction = true;
                 this.buttonStart.BackColor = Color.DarkRed;
                 this.buttonStart.Text = "STOPPING ...";
-                this.buttonStart.Enabled = false;       
+                this.buttonStart.Enabled = false;
+
+                if (!instant && this._Program.DelayStop)
+                {
+                    await Task.Delay(this._Program.DelayStopSeconds * 1000);
+                }
+
                 if (await Task.Run(() => this.stopAsync()))
                 {
                     this.setStopped();
@@ -429,7 +435,7 @@ namespace iRacingManager.Gui.Controls
                 }
                 else
                 {
-                    this.stop();
+                    this.stop(true);
                 }
             } catch (Exception ex)
             {

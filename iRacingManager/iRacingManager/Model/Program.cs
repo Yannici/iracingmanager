@@ -94,6 +94,7 @@ namespace iRacingManager.Model
             switch(this.FileName.ToLower())
             {
                 case "kapps.exe":
+                case "racelabapps.exe":
                     var fileInfo = new FileInfo(Path.Combine(this.InstallLocation, this.FileName));
                     // The kapps launcher only has less than 1MB size
                     if (fileInfo.Length < 1000000)
@@ -216,6 +217,16 @@ namespace iRacingManager.Model
         } = false;
 
         public int DelayStartSeconds
+        {
+            get; set;
+        } = 0;
+
+        public bool DelayStop
+        {
+            get; set;
+        } = false;
+
+        public int DelayStopSeconds
         {
             get; set;
         } = 0;
