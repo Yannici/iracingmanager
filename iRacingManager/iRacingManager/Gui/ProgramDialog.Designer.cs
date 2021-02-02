@@ -244,7 +244,7 @@
             // materialCheckBoxDelayStop
             // 
             this.materialCheckBoxDelayStop.AutoSize = true;
-            this.materialCheckBoxDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "DelayStop", true));
+            this.materialCheckBoxDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "DelayStop", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxDelayStop.Depth = 0;
             this.materialCheckBoxDelayStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.materialCheckBoxDelayStop.Location = new System.Drawing.Point(-3, 242);
