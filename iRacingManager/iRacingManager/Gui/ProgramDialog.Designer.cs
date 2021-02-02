@@ -228,8 +228,8 @@
             // 
             // materialSingleLineTextFieldDelayStop
             // 
-            this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.programBindingSource, "DelayStartSeconds", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N0"));
-            this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.programBindingSource, "DelayStopSeconds", true));
+            this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.programBindingSource, "DelayStop", true));
+            this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.programBindingSource, "DelayStopSeconds", true));
             this.materialSingleLineTextFieldDelayStop.Depth = 0;
             this.materialSingleLineTextFieldDelayStop.Hint = "";
             this.materialSingleLineTextFieldDelayStop.Location = new System.Drawing.Point(119, 247);
