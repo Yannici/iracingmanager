@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("iRacingManager")]
-[assembly: AssemblyCopyright("Copyright © Yannic Schnetz 2019")]
+[assembly: AssemblyCopyright("Copyright © Yannic Lorenz 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
