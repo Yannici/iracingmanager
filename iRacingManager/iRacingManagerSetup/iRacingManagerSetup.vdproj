@@ -547,15 +547,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:iRacingManager"
-        "ProductCode" = "8:{6096785B-2CA9-427C-8C82-9B62A96EFAA4}"
-        "PackageCode" = "8:{E73AC8D5-131D-4587-890F-1797F4D69BED}"
+        "ProductCode" = "8:{29940B71-A085-4A71-959C-4D73723EC77E}"
+        "PackageCode" = "8:{9EC58B8C-F564-404F-8660-8D0A0993765F}"
         "UpgradeCode" = "8:{6190A9A5-9E93-45CE-93CA-9840D69EFADE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.2.3"
+        "ProductVersion" = "8:1.2.4"
         "Manufacturer" = "8:Yannic Lorenz"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1116,7 +1116,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E11DAA0132B045049A10C9997FDAE60F"
             {
-            "SourcePath" = "8:..\\iRacingManager\\obj\\Release\\iRacingManager.exe"
+            "SourcePath" = "8:..\\iRacingManager\\obj\\Debug\\iRacingManager.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B863609B68734D3E8ED712380405675D"

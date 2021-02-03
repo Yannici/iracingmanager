@@ -101,7 +101,7 @@ namespace iRacingManager.Model
                     {
                         // Use the application in the subdirectory instead by getting the version number
                         var version = FileVersionInfo.GetVersionInfo(fileInfo.FullName);
-                        var versionDir = Path.Combine(this.InstallLocation, "app-" + (version.FileVersion.EndsWith(".0") ? version.FileVersion.Substring(0, version.FileVersion.LastIndexOf('.') + 1) : version.FileVersion));
+                        var versionDir = Path.Combine(this.InstallLocation, "app-" + (version.FileVersion.EndsWith(".0") && version.FileVersion.Count(c => c.Equals('.')) > 3 ? version.FileVersion.Substring(0, version.FileVersion.LastIndexOf('.') + 2) : version.FileVersion));
 
                         if (Directory.Exists(versionDir)) {
                             psi.FileName = Path.Combine(versionDir, this.FileName);
