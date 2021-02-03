@@ -290,10 +290,10 @@
             this.linkLabelMembersite.AutoSize = true;
             this.linkLabelMembersite.Location = new System.Drawing.Point(194, 135);
             this.linkLabelMembersite.Name = "linkLabelMembersite";
-            this.linkLabelMembersite.Size = new System.Drawing.Size(82, 13);
+            this.linkLabelMembersite.Size = new System.Drawing.Size(75, 13);
             this.linkLabelMembersite.TabIndex = 3;
             this.linkLabelMembersite.TabStop = true;
-            this.linkLabelMembersite.Text = "Yannic Schnetz";
+            this.linkLabelMembersite.Text = "Yannic Lorenz";
             this.linkLabelMembersite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMembersite_LinkClicked);
             // 
             // materialLabelInfo1
