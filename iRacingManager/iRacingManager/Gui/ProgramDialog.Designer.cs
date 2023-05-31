@@ -55,6 +55,7 @@
             this.materialFlatButtonCancel = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialCheckBoxStartHidden = new MaterialSkin.Controls.MaterialCheckBox();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.materialCheckBoxStartOnDisconnect = new MaterialSkin.Controls.MaterialCheckBox();
             this.programBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panelDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
@@ -181,6 +182,7 @@
             // panelDetails
             // 
             this.panelDetails.BackColor = System.Drawing.Color.White;
+            this.panelDetails.Controls.Add(this.materialCheckBoxStartOnDisconnect);
             this.panelDetails.Controls.Add(this.materialLabelDelayStopSeconds);
             this.panelDetails.Controls.Add(this.materialSingleLineTextFieldDelayStop);
             this.panelDetails.Controls.Add(this.materialCheckBoxDelayStop);
@@ -205,7 +207,7 @@
             this.panelDetails.Controls.Add(this.materialSingleLineTextField2);
             this.panelDetails.Location = new System.Drawing.Point(12, 107);
             this.panelDetails.Name = "panelDetails";
-            this.panelDetails.Size = new System.Drawing.Size(289, 322);
+            this.panelDetails.Size = new System.Drawing.Size(301, 347);
             this.panelDetails.TabIndex = 8;
             this.panelDetails.Visible = false;
             // 
@@ -215,7 +217,7 @@
             this.materialLabelDelayStopSeconds.Depth = 0;
             this.materialLabelDelayStopSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelDelayStopSeconds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabelDelayStopSeconds.Location = new System.Drawing.Point(200, 251);
+            this.materialLabelDelayStopSeconds.Location = new System.Drawing.Point(200, 281);
             this.materialLabelDelayStopSeconds.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelDelayStopSeconds.Name = "materialLabelDelayStopSeconds";
             this.materialLabelDelayStopSeconds.Size = new System.Drawing.Size(75, 18);
@@ -228,7 +230,7 @@
             this.materialSingleLineTextFieldDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.programBindingSource, "DelayStop", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialSingleLineTextFieldDelayStop.Depth = 0;
             this.materialSingleLineTextFieldDelayStop.Hint = "";
-            this.materialSingleLineTextFieldDelayStop.Location = new System.Drawing.Point(119, 247);
+            this.materialSingleLineTextFieldDelayStop.Location = new System.Drawing.Point(119, 277);
             this.materialSingleLineTextFieldDelayStop.MaxLength = 32767;
             this.materialSingleLineTextFieldDelayStop.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSingleLineTextFieldDelayStop.Name = "materialSingleLineTextFieldDelayStop";
@@ -245,9 +247,10 @@
             // 
             this.materialCheckBoxDelayStop.AutoSize = true;
             this.materialCheckBoxDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "DelayStop", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialCheckBoxDelayStop.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.programBindingSource, "StopWithIRacing", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxDelayStop.Depth = 0;
             this.materialCheckBoxDelayStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBoxDelayStop.Location = new System.Drawing.Point(-3, 242);
+            this.materialCheckBoxDelayStop.Location = new System.Drawing.Point(-3, 272);
             this.materialCheckBoxDelayStop.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxDelayStop.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBoxDelayStop.MouseState = MaterialSkin.MouseState.HOVER;
@@ -264,7 +267,7 @@
             this.materialLabelDelaySeconds.Depth = 0;
             this.materialLabelDelaySeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelDelaySeconds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabelDelaySeconds.Location = new System.Drawing.Point(200, 221);
+            this.materialLabelDelaySeconds.Location = new System.Drawing.Point(200, 251);
             this.materialLabelDelaySeconds.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelDelaySeconds.Name = "materialLabelDelaySeconds";
             this.materialLabelDelaySeconds.Size = new System.Drawing.Size(75, 18);
@@ -277,7 +280,7 @@
             this.materialSingleLineTextFieldDelay.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.programBindingSource, "DelayStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialSingleLineTextFieldDelay.Depth = 0;
             this.materialSingleLineTextFieldDelay.Hint = "";
-            this.materialSingleLineTextFieldDelay.Location = new System.Drawing.Point(119, 217);
+            this.materialSingleLineTextFieldDelay.Location = new System.Drawing.Point(119, 247);
             this.materialSingleLineTextFieldDelay.MaxLength = 32767;
             this.materialSingleLineTextFieldDelay.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSingleLineTextFieldDelay.Name = "materialSingleLineTextFieldDelay";
@@ -296,7 +299,7 @@
             this.materialCheckBoxDelayStart.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "DelayStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxDelayStart.Depth = 0;
             this.materialCheckBoxDelayStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBoxDelayStart.Location = new System.Drawing.Point(-3, 212);
+            this.materialCheckBoxDelayStart.Location = new System.Drawing.Point(-3, 242);
             this.materialCheckBoxDelayStart.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxDelayStart.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBoxDelayStart.MouseState = MaterialSkin.MouseState.HOVER;
@@ -313,7 +316,7 @@
             this.materialLabelWithiRacing.Depth = 0;
             this.materialLabelWithiRacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.materialLabelWithiRacing.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabelWithiRacing.Location = new System.Drawing.Point(180, 176);
+            this.materialLabelWithiRacing.Location = new System.Drawing.Point(64, 206);
             this.materialLabelWithiRacing.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabelWithiRacing.Name = "materialLabelWithiRacing";
             this.materialLabelWithiRacing.Size = new System.Drawing.Size(103, 18);
@@ -326,7 +329,7 @@
             this.materialCheckBoxStopWithiRacing.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StopWithIRacing", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxStopWithiRacing.Depth = 0;
             this.materialCheckBoxStopWithiRacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBoxStopWithiRacing.Location = new System.Drawing.Point(113, 182);
+            this.materialCheckBoxStopWithiRacing.Location = new System.Drawing.Point(-3, 212);
             this.materialCheckBoxStopWithiRacing.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxStopWithiRacing.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBoxStopWithiRacing.MouseState = MaterialSkin.MouseState.HOVER;
@@ -374,7 +377,7 @@
             this.materialCheckBoxStartWithiRacing.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StartWithIRacing", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.materialCheckBoxStartWithiRacing.Depth = 0;
             this.materialCheckBoxStartWithiRacing.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.materialCheckBoxStartWithiRacing.Location = new System.Drawing.Point(113, 158);
+            this.materialCheckBoxStartWithiRacing.Location = new System.Drawing.Point(-3, 188);
             this.materialCheckBoxStartWithiRacing.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBoxStartWithiRacing.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBoxStartWithiRacing.MouseState = MaterialSkin.MouseState.HOVER;
@@ -391,7 +394,7 @@
             this.materialFlatButtonDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialFlatButtonDelete.Depth = 0;
             this.materialFlatButtonDelete.Icon = ((System.Drawing.Image)(resources.GetObject("materialFlatButtonDelete.Icon")));
-            this.materialFlatButtonDelete.Location = new System.Drawing.Point(188, 284);
+            this.materialFlatButtonDelete.Location = new System.Drawing.Point(186, 305);
             this.materialFlatButtonDelete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButtonDelete.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButtonDelete.Name = "materialFlatButtonDelete";
@@ -426,7 +429,7 @@
             this.materialRaisedButtonOK.Depth = 0;
             this.materialRaisedButtonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.materialRaisedButtonOK.Icon = null;
-            this.materialRaisedButtonOK.Location = new System.Drawing.Point(5, 284);
+            this.materialRaisedButtonOK.Location = new System.Drawing.Point(3, 305);
             this.materialRaisedButtonOK.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButtonOK.Name = "materialRaisedButtonOK";
             this.materialRaisedButtonOK.Primary = true;
@@ -442,7 +445,7 @@
             this.materialFlatButtonCancel.Depth = 0;
             this.materialFlatButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.materialFlatButtonCancel.Icon = null;
-            this.materialFlatButtonCancel.Location = new System.Drawing.Point(67, 284);
+            this.materialFlatButtonCancel.Location = new System.Drawing.Point(65, 305);
             this.materialFlatButtonCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialFlatButtonCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialFlatButtonCancel.Name = "materialFlatButtonCancel";
@@ -479,6 +482,23 @@
             this.pictureBoxIcon.TabIndex = 0;
             this.pictureBoxIcon.TabStop = false;
             // 
+            // materialCheckBoxStartOnDisconnect
+            // 
+            this.materialCheckBoxStartOnDisconnect.AutoSize = true;
+            this.materialCheckBoxStartOnDisconnect.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.programBindingSource, "StartOnDisconnect", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.materialCheckBoxStartOnDisconnect.Depth = 0;
+            this.materialCheckBoxStartOnDisconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.materialCheckBoxStartOnDisconnect.Location = new System.Drawing.Point(147, 158);
+            this.materialCheckBoxStartOnDisconnect.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBoxStartOnDisconnect.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBoxStartOnDisconnect.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBoxStartOnDisconnect.Name = "materialCheckBoxStartOnDisconnect";
+            this.materialCheckBoxStartOnDisconnect.Ripple = true;
+            this.materialCheckBoxStartOnDisconnect.Size = new System.Drawing.Size(150, 30);
+            this.materialCheckBoxStartOnDisconnect.TabIndex = 23;
+            this.materialCheckBoxStartOnDisconnect.Text = "Start on disconnect";
+            this.materialCheckBoxStartOnDisconnect.UseVisualStyleBackColor = true;
+            // 
             // programBindingSource
             // 
             this.programBindingSource.DataSource = typeof(iRacingManager.Model.Program);
@@ -488,7 +508,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.materialFlatButtonCancel;
-            this.ClientSize = new System.Drawing.Size(313, 442);
+            this.ClientSize = new System.Drawing.Size(325, 462);
             this.Controls.Add(this.panelDetails);
             this.Controls.Add(this.materialFlatButtonSelectApp);
             this.Controls.Add(this.materialSingleLineTextFieldPath);
@@ -535,5 +555,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabelDelayStopSeconds;
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextFieldDelayStop;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBoxDelayStop;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBoxStartOnDisconnect;
     }
 }

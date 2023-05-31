@@ -15,30 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0E125A1FA6F638AC0AEEC8DE1C29172A"
-        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0E125A1FA6F638AC0AEEC8DE1C29172A"
-        "OwnerKey" = "8:_590E245E41AE65A7DB11DDB048FE94C9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_19E4AD9882971775127923C1E5D2CC19"
-        "OwnerKey" = "8:_57D9D2C57657A61046CC412A16CBA29C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_19E4AD9882971775127923C1E5D2CC19"
-        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1B50AD86DCEF86EE4CE5EE52D440ED4F"
         "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
@@ -46,12 +22,12 @@
         "Entry"
         {
         "MsmKey" = "8:_1B50AD86DCEF86EE4CE5EE52D440ED4F"
-        "OwnerKey" = "8:_57D9D2C57657A61046CC412A16CBA29C"
+        "OwnerKey" = "8:_D71EA899EA147FD421E30EE74A3BBCC5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_57D9D2C57657A61046CC412A16CBA29C"
+        "MsmKey" = "8:_4E1E15906692794CE0391D123213F209"
         "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -63,8 +39,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_624975F9AD8E272CAACEB67B574FBAB6"
+        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_77AB99C3CBB94ED7897ED6F9B86DF738"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C7A7EE5E1C7DC788B02D5ACEE4770364"
+        "OwnerKey" = "8:_590E245E41AE65A7DB11DDB048FE94C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -75,7 +63,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DB7CE338CB75168B82AF58DE3D048B3F"
+        "MsmKey" = "8:_D3E76D82256837B61DD27A750BD5B91B"
+        "OwnerKey" = "8:_D71EA899EA147FD421E30EE74A3BBCC5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D3E76D82256837B61DD27A750BD5B91B"
+        "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D71EA899EA147FD421E30EE74A3BBCC5"
         "OwnerKey" = "8:_E11DAA0132B045049A10C9997FDAE60F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -106,19 +106,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C7A7EE5E1C7DC788B02D5ACEE4770364"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F9BFEFCF3C326FF0B9FD2BC7DCE28C01"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_57D9D2C57657A61046CC412A16CBA29C"
+        "OwnerKey" = "8:_D71EA899EA147FD421E30EE74A3BBCC5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_19E4AD9882971775127923C1E5D2CC19"
+        "OwnerKey" = "8:_D3E76D82256837B61DD27A750BD5B91B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -130,13 +136,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DB7CE338CB75168B82AF58DE3D048B3F"
+        "OwnerKey" = "8:_4E1E15906692794CE0391D123213F209"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0E125A1FA6F638AC0AEEC8DE1C29172A"
+        "OwnerKey" = "8:_624975F9AD8E272CAACEB67B574FBAB6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -226,7 +232,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.6.1"
+                "FrameworkVersion" = "8:v4.6.1"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
                 }
@@ -234,68 +240,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0E125A1FA6F638AC0AEEC8DE1C29172A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-                "ScatterAssemblies"
-                {
-                    "_0E125A1FA6F638AC0AEEC8DE1C29172A"
-                    {
-                    "Name" = "8:System.IO.Compression.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.IO.Compression.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_19E4AD9882971775127923C1E5D2CC19"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:iRSDKSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_19E4AD9882971775127923C1E5D2CC19"
-                    {
-                    "Name" = "8:iRSDKSharp.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:iRSDKSharp.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1B50AD86DCEF86EE4CE5EE52D440ED4F"
             {
             "AssemblyRegister" = "3:1"
@@ -327,20 +271,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_57D9D2C57657A61046CC412A16CBA29C"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4E1E15906692794CE0391D123213F209"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:iRacingSdkWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_57D9D2C57657A61046CC412A16CBA29C"
+                    "_4E1E15906692794CE0391D123213F209"
                     {
-                    "Name" = "8:iRacingSdkWrapper.dll"
+                    "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:iRacingSdkWrapper.dll"
+            "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B863609B68734D3E8ED712380405675D"
@@ -389,6 +333,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_624975F9AD8E272CAACEB67B574FBAB6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+                "ScatterAssemblies"
+                {
+                    "_624975F9AD8E272CAACEB67B574FBAB6"
+                    {
+                    "Name" = "8:System.IO.Compression.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_77AB99C3CBB94ED7897ED6F9B86DF738"
             {
             "SourcePath" = "8:..\\iRacingManager\\setupbanner.jpg"
@@ -407,6 +382,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C7A7EE5E1C7DC788B02D5ACEE4770364"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C7A7EE5E1C7DC788B02D5ACEE4770364"
+                    {
+                    "Name" = "8:System.IO.Compression.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CEB17CF89FC841A59F3C698519F090A5"
@@ -429,20 +435,51 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DB7CE338CB75168B82AF58DE3D048B3F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D3E76D82256837B61DD27A750BD5B91B"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:iRSDKSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_DB7CE338CB75168B82AF58DE3D048B3F"
+                    "_D3E76D82256837B61DD27A750BD5B91B"
                     {
-                    "Name" = "8:System.Net.Http.dll"
+                    "Name" = "8:iRSDKSharp.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Net.Http.dll"
+            "SourcePath" = "8:iRSDKSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B863609B68734D3E8ED712380405675D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D71EA899EA147FD421E30EE74A3BBCC5"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:iRacingSdkWrapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D71EA899EA147FD421E30EE74A3BBCC5"
+                    {
+                    "Name" = "8:iRacingSdkWrapper.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:iRacingSdkWrapper.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B863609B68734D3E8ED712380405675D"
@@ -547,15 +584,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:iRacingManager"
-        "ProductCode" = "8:{29940B71-A085-4A71-959C-4D73723EC77E}"
-        "PackageCode" = "8:{9EC58B8C-F564-404F-8660-8D0A0993765F}"
+        "ProductCode" = "8:{FAE46274-9102-4D66-9BC8-540749D9020E}"
+        "PackageCode" = "8:{34B73BAE-73D9-4576-8C94-FB3D85BBC53E}"
         "UpgradeCode" = "8:{6190A9A5-9E93-45CE-93CA-9840D69EFADE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.2.4"
+        "ProductVersion" = "8:1.2.5"
         "Manufacturer" = "8:Yannic Lorenz"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

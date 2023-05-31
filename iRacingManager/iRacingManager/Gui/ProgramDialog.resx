@@ -120,14 +120,11 @@
   <metadata name="programBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="programBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="materialFlatButtonDelete.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAAKhJREFUSEvtkUEKwkAMRecGXsF19R5e3kMIXeklNA8a+JQwzK8WXPTBw3RMfoa2
+        EAAACxABrSO9dQAAAKhJREFUSEvtkUEKwkAMRecGXsF19R5e3kMIXeklNA8a+JQwzK8WXPTBw3RMfoa2
         HfyCc/gI3ys5479NrMNGHaYaHvG/qG7Y06YK6WlThfS00eF7+JJnas60xyYHCTqF15DgZ3hZznSJTQ4S
         SiDwm3Uu/HoB5q0Tag1HGx1mwRQmLOBMe2xycPdXtPtHziV6W2oNRxsdHtFmDqugSnptbuHIEnroPdhC
         ax9XHqt30KkQFQAAAABJRU5ErkJggg==

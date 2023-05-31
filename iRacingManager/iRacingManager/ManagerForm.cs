@@ -357,6 +357,10 @@ namespace iRacingManager
                 {
                     control.stop(false);
                 }
+                else if (control.Program.StartOnDisconnect && control.State == Model.Program.ProcessState.STOPPED)
+                {
+                    control.start();
+                }
             }
         }
 

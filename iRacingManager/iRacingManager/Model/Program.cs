@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace iRacingManager.Model
 {
@@ -15,10 +17,16 @@ namespace iRacingManager.Model
     /// Class represents a startable program in the manager form.
     /// </summary>
     [Serializable()]
-    public class Program
+    public class Program : INotifyPropertyChanged
     {
 
         #region Members
+
+        private bool _stopWithIRacing = true;
+        private bool _startWithIRacing = true;
+        private bool _startOnDisconnect = false;
+        private bool _delayStop = false;
+        private bool _delayStart = false;
 
         internal enum ProcessState
         {
@@ -131,13 +139,7 @@ namespace iRacingManager.Model
             get; set;
         } = string.Empty;
 
-        public bool UseIconFromApplication
-        {
-            get
-            {
-                return string.IsNullOrEmpty(this.PicturePath);
-            }
-        }
+        public bool UseIconFromApplication => string.IsNullOrEmpty(this.PicturePath);
 
         [System.Xml.Serialization.XmlIgnore]
         public Image Icon
@@ -173,13 +175,29 @@ namespace iRacingManager.Model
 
         public bool StartWithIRacing
         {
-            get; set;
-        } = true;
+            get => this._startWithIRacing;
+            set
+            {
+                this._startWithIRacing = value;
+                if (value)
+                    this.StartOnDisconnect = false;
+
+                this.OnPropertyChanged();
+            }
+        }
 
         public bool StopWithIRacing
         {
-            get; set;
-        } = true;
+            get => this._stopWithIRacing;
+            set
+            {
+                this._stopWithIRacing = value;
+                if (!value)
+                    this.DelayStop = false;
+
+                this.OnPropertyChanged();
+            }
+        }
 
         public string Name
         {
@@ -213,8 +231,13 @@ namespace iRacingManager.Model
 
         public bool DelayStart
         {
-            get; set;
-        } = false;
+            get => this._delayStart;
+            set
+            {
+                this._delayStart = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         public int DelayStartSeconds
         {
@@ -223,13 +246,49 @@ namespace iRacingManager.Model
 
         public bool DelayStop
         {
-            get; set;
-        } = false;
+            get => this._delayStop;
+            set
+            {
+                this._delayStop = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         public int DelayStopSeconds
         {
             get; set;
         } = 0;
+
+        public bool StartOnDisconnect
+        {
+            get => this._startOnDisconnect;
+            set
+            {
+                this._startOnDisconnect = value;
+                if (value)
+                {
+                    this.StartWithIRacing = false;
+                    this.StopWithIRacing = false;
+                }
+                    
+
+                this.OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Event
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (string.IsNullOrEmpty(propertyName))
+                return;
+
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
