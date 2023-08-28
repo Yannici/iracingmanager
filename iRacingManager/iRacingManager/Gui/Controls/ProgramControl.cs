@@ -148,7 +148,7 @@ namespace iRacingManager.Gui.Controls
 
                 if (this.State != this._CurrentState)
                 {
-                    switch(this.State)
+                    switch (this.State)
                     {
                         case Model.Program.ProcessState.STOPPED:
                             this.Invoke(new Action(() => this.setStopped()));
@@ -160,7 +160,14 @@ namespace iRacingManager.Gui.Controls
                             break;
                     }
                 }
-            } catch(Exception ex)
+            } 
+            catch (Win32Exception ex)
+            {
+                // Ignore access denied errors
+                if (!ex.Message.Contains("Access is denied"))
+                    throw;
+            } 
+            catch(Exception ex)
             {
                 throw new Exception("Error on updating program control state", ex);
             }
