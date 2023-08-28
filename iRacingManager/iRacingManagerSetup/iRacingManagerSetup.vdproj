@@ -232,7 +232,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:v4.6.1"
+                "FrameworkVersion" = "8:v4.6.1 "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
                 }
@@ -584,15 +584,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:iRacingManager"
-        "ProductCode" = "8:{FAE46274-9102-4D66-9BC8-540749D9020E}"
-        "PackageCode" = "8:{34B73BAE-73D9-4576-8C94-FB3D85BBC53E}"
+        "ProductCode" = "8:{5FE18A8A-1703-4217-B016-ED2337FB5AC5}"
+        "PackageCode" = "8:{D3081B92-DB89-4B93-A5AE-77995D6E16DD}"
         "UpgradeCode" = "8:{6190A9A5-9E93-45CE-93CA-9840D69EFADE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.2.5"
+        "ProductVersion" = "8:1.2.6"
         "Manufacturer" = "8:Yannic Lorenz"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
