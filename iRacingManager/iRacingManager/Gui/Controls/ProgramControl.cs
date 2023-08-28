@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using NLog;
+using iRacingManager.Model;
 
 namespace iRacingManager.Gui.Controls
 {
@@ -163,9 +165,8 @@ namespace iRacingManager.Gui.Controls
             } 
             catch (Win32Exception ex)
             {
-                // Ignore access denied errors
-                if (!ex.Message.Contains("Access is denied"))
-                    throw;
+                // Only warn win32 exceptions
+                iRacingManager.Program.Logger.Warn(ex, "Win32 Error on updating program state");
             } 
             catch(Exception ex)
             {
